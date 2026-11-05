@@ -9,6 +9,7 @@ Repositori berisi dasbor simulasi Android dan implementasi server trading otomat
 
 **Versi 1.1 menambahkan server GMGN dan tombol pembuka panel server pada APK.** Instal APK saja tidak mengaktifkan trading. Server belum dipasang, akses API belum dikonfigurasi, dan transaksi uang nyata belum diuji. Batas belanja, nominal beli dan batas rugi default nol; seluruh pengujian otomatis memakai fixture.
 
+- [Mulai dari HP: akun VPS sampai panel GMGN](PANDUAN_SERVER_HP.md)
 - [Panduan server GMGN dan pengamanan kredensial](gmgn-live/README.md)
 
 **Build versi 1.1 berhasil:** APK/lint Android, 25 tes server, 25 tes simulasi, 7 skenario panel server, 13 skenario web/launcher, image Docker dan validasi Compose lolos. Semua pengujian transaksi memakai fixture; belum ada pengoperasian GMGN dengan dana nyata.
