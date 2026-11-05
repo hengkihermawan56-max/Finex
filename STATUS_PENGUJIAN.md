@@ -2,7 +2,24 @@
 
 ## Versi 1.1 — GMGN server dan APK pembuka panel
 
-Mesin server memiliki 25 tes lokal yang lolos. Pengujian menggunakan wallet/kunci sintetis dan transport tiruan; tidak ada transaksi GMGN sungguhan yang dikirim. Server belum dipasang dan belum memiliki API key produksi. Batas dana default nol. CI memeriksa server, panel browser, image Docker dan APK.
+Mesin server memiliki 25 tes lokal/CI yang lolos. Pengujian menggunakan wallet/kunci sintetis dan transport tiruan; tidak ada transaksi GMGN sungguhan yang dikirim. Server belum dipasang dan belum memiliki API key produksi. Batas dana default nol.
+
+| Pemeriksaan 1.1 | Hasil |
+|---|---|
+| Unit mesin simulasi | 25 lolos |
+| Unit server GMGN | 25 lolos |
+| Browser dasbor dan launcher | 13 skenario lolos |
+| Browser panel server | 7 skenario lolos; screenshot seluler diperiksa |
+| Build/lint APK 1.1 | Lolos |
+| Image Docker dan Compose | Lolos |
+| Koneksi akun GMGN dengan dana | Belum diuji/dikonfigurasi |
+| Server aktif 24 jam | Belum dipasang; VPS belum tersedia |
+
+Source: `8c6a4cbdd2f45b0c12d02c710676141dae477e03`.
+
+- [Run APK 1.1](https://github.com/hengkihermawan56-max/Finex/actions/runs/41976483127)
+- [Run server](https://github.com/hengkihermawan56-max/Finex/actions/runs/41976483151)
+- [Run dasbor](https://github.com/hengkihermawan56-max/Finex/actions/runs/41976483099)
 
 ## Riwayat versi 1.0 — paper
 

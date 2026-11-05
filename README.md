@@ -11,6 +11,14 @@ Repositori berisi dasbor simulasi Android dan implementasi server trading otomat
 
 - [Panduan server GMGN dan pengamanan kredensial](gmgn-live/README.md)
 
+**Build versi 1.1 berhasil:** APK/lint Android, 25 tes server, 25 tes simulasi, 7 skenario panel server, 13 skenario web/launcher, image Docker dan validasi Compose lolos. Semua pengujian transaksi memakai fixture; belum ada pengoperasian GMGN dengan dana nyata.
+
+- [Build APK 1.1 dan artifact unduhan](https://github.com/hengkihermawan56-max/Finex/actions/runs/41976483127)
+- [Pengujian server, panel dan image](https://github.com/hengkihermawan56-max/Finex/actions/runs/41976483151)
+- [Pengujian dasbor dan launcher Android](https://github.com/hengkihermawan56-max/Finex/actions/runs/41976483099)
+
+Source build 1.1: `8c6a4cbdd2f45b0c12d02c710676141dae477e03`. SHA-256 APK: `dd5c72f5927043ed6eb86744c64108c6b27e2d0f23015e4029fe5aecb4a3b273`.
+
 - [Buka proyek, fitur dan pengujian](solana-desk/README.md)
 - [Panduan GitHub dan instal Android](solana-desk/PANDUAN_ANDROID.md)
 - [Analisis video referensi](solana-desk/ANALISIS_VIDEO.md)
