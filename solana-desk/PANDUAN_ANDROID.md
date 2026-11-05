@@ -1,5 +1,13 @@
 # Panduan GitHub → APK Android
 
+## Tambahan versi 1.1: panel server GMGN
+
+Tombol **Panel server GMGN · Uang nyata** membuka panel HTTPS pada server Anda. Simpan alamat domain server pada dialog tersebut, lalu pilih **Buka panel server**. API key/private PEM dikonfigurasi langsung pada server, bukan pada APK. Dasbor saldo dan tombol Mulai bot di APK tetap merupakan simulasi.
+
+Bot uang nyata berjalan otomatis pada server terpisah setelah pemilik menyiapkan [GMGN Live](../gmgn-live/README.md), menetapkan batas SOL dan mengaktifkannya di panel. Tanpa server dan akses API yang sesuai, APK tidak dapat melakukan trading uang nyata.
+
+Jika Android menolak pembaruan karena kunci debug build berbeda, ekspor jurnal simulasi sebelum menghapus versi lama dan memasang APK baru.
+
 Proyek ini membuat aplikasi simulasi yang dapat dijalankan tanpa Termux dan tanpa kunci API.
 
 ## A. Jika kode sudah ada di GitHub

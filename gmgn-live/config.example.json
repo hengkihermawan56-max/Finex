@@ -1,0 +1,21 @@
+{
+  "wallet": "",
+  "budgetSol": "0",
+  "orderSol": "0",
+  "maxLossSol": "0",
+  "reserveSol": "0.03",
+  "priorityFeeSol": "0.0005",
+  "tipFeeSol": "0.0005",
+  "maxDailyOrders": 5,
+  "slippagePct": 2,
+  "maxRoundTripLossPct": 5,
+  "takeProfitPct": 12,
+  "stopLossPct": 6,
+  "minLiquidityUsd": 50000,
+  "minVolumeH1Usd": 10000,
+  "maxTop10Ratio": 0.2,
+  "maxRugRatio": 0.2,
+  "minAgeMinutes": 30,
+  "pollSeconds": 30,
+  "watchlist": []
+}

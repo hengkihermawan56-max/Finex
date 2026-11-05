@@ -75,14 +75,22 @@ try {
   const width = await page.evaluate(() => ({ client: document.documentElement.clientWidth, scroll: document.documentElement.scrollWidth }));
   assert.equal(width.client, width.scroll, 'Mobile document must not overflow horizontally');
   await page.screenshot({ path: 'test-results/mobile.png', fullPage: true });
+  await page.locator('[data-action="gmgn-server"]').click();
+  await page.locator('#gmgn-server-url').fill('http://bot.example.test');
+  await page.locator('#gmgn-server-form button[type="submit"]').click();
+  assert.match(await page.locator('#form-error').textContent(), /HTTPS/);
+  await page.locator('#gmgn-server-url').fill('https://bot.example.test');
+  await page.locator('#gmgn-server-form button[type="submit"]').click();
+  assert.equal(await page.evaluate(() => localStorage.getItem('hengki-gmgn-server')), 'https://bot.example.test');
+  await page.locator('#modal-close').click();
   assert.deepEqual(errors, [], 'No unhandled JavaScript errors');
   const result = { ok: true, scenarios: [
     'desktop layout', 'six modules', 'start and restore paused', 'native lifecycle pause',
     'separate ledgers', 'market fixture entry', 'round-trip costs', 'CSV export',
-    'API failure pause', 'settings reset', '390px layout'
+    'API failure pause', 'settings reset', '390px layout', 'GMGN HTTPS validation', 'GMGN server address persistence'
   ], marketData: 'mocked', pageErrors: errors };
   await writeFile('test-results/result.json', JSON.stringify(result, null, 2));
-  console.log('Browser integration checks passed: 11 scenarios, desktop and 390px mobile.');
+  console.log('Browser integration checks passed: 13 scenarios, desktop and 390px mobile.');
 } finally {
   if (browser) await browser.close();
   server.kill('SIGTERM');

@@ -1,0 +1,47 @@
+services:
+  bot:
+    build: .
+    restart: unless-stopped
+    user: "${BOT_UID:-1000}:${BOT_GID:-1000}"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    environment:
+      APP_ORIGIN: "https://${BOT_DOMAIN}"
+      ALLOW_REAL_TRADING: "${ALLOW_REAL_TRADING:-false}"
+      SOLANA_RPC_URL: "${SOLANA_RPC_URL:-https://api.mainnet-beta.solana.com}"
+      GMGN_API_KEY_FILE: /run/secrets/gmgn_api_key
+      GMGN_PRIVATE_KEY_FILE: /run/secrets/gmgn_private_key
+      ADMIN_TOKEN_FILE: /run/secrets/admin_token
+      CONFIG_PATH: /config/config.json
+      STATE_PATH: /data/state.json
+    volumes:
+      - ./data:/data
+      - ./config.json:/config/config.json:ro
+    secrets: [gmgn_api_key, gmgn_private_key, admin_token]
+    tmpfs: [/tmp]
+    networks: [private]
+  proxy:
+    image: caddy:2
+    restart: unless-stopped
+    ports: ['80:80', '443:443']
+    environment:
+      BOT_DOMAIN: "${BOT_DOMAIN}"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on: [bot]
+    networks: [private]
+secrets:
+  gmgn_api_key:
+    file: ./secrets/gmgn-api-key.txt
+  gmgn_private_key:
+    file: ./secrets/gmgn-private.pem
+  admin_token:
+    file: ./secrets/admin-token.txt
+networks:
+  private:
+volumes:
+  caddy_data:
+  caddy_config:

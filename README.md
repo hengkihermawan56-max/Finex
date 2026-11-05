@@ -1,16 +1,25 @@
-# HENGKI Solana Desk
+# HENGKI Solana Desk / GMGN Live
 
-Dasbor **paper trading Solana** untuk Android dan browser, terinspirasi tampilan video yang diberikan Hengki. Modal awal virtual Rp1.000.000. Enam modul berbasis aturan, tanpa API key dan tanpa transaksi uang nyata.
+Repositori berisi dasbor simulasi Android dan implementasi server trading otomatis GMGN. Semua keputusan memakai aturan numerik yang dapat diperiksa di source.
+
+| Bagian | Fungsi | Uang nyata |
+|---|---|---|
+| `solana-desk/` | Simulasi di Android/browser, modal virtual awal Rp1 juta | Tidak |
+| `gmgn-live/` | Bot server 24 jam melalui GMGN OpenAPI, dengan panel HTTPS | Dapat mengirim transaksi setelah pemilik mengonfigurasi dan mengaktifkannya |
+
+**Versi 1.1 menambahkan server GMGN dan tombol pembuka panel server pada APK.** Instal APK saja tidak mengaktifkan trading. Server belum dipasang, akses API belum dikonfigurasi, dan transaksi uang nyata belum diuji. Batas belanja, nominal beli dan batas rugi default nol; seluruh pengujian otomatis memakai fixture.
+
+- [Panduan server GMGN dan pengamanan kredensial](gmgn-live/README.md)
 
 - [Buka proyek, fitur dan pengujian](solana-desk/README.md)
 - [Panduan GitHub dan instal Android](solana-desk/PANDUAN_ANDROID.md)
 - [Analisis video referensi](solana-desk/ANALISIS_VIDEO.md)
 
-Folder `solana-desk/` berisi aplikasi. Workflow `Solana - Build Android APK` membangun APK debug. Workflow `Solana - Publish web app` menerbitkan versi web jika dijalankan setelah Pages diaktifkan. Tidak ada kunci dompet, koneksi dompet, atau fungsi kirim transaksi blockchain.
+Workflow `Solana - Build Android APK` membangun APK debug. `GMGN - Server tests and image` menguji server serta image Docker. API key dan private PEM hanya disimpan pada server operator, tidak pada APK atau GitHub. Workflow Pages hanya memublikasikan folder web simulasi.
 
 Untuk mencoba tanpa server, buka `BUKA_DEMO.html` di browser yang mendukung JavaScript dan file lokal. File ini menggabungkan mesin yang sama dengan aset aplikasi dalam satu HTML. Fitur pemasangan PWA tersedia pada versi HTTPS, bukan pada file lokal. Jika browser Android membatasi file lokal, gunakan APK dari workflow atau versi GitHub Pages.
 
-**Status v1.0.0:** build APK debug dan lint Android berhasil. Sebanyak 25 tes mesin dan 11 skenario integrasi browser desktop/seluler lolos. Pengujian data pasar menggunakan fixture; pemasangan pada HP fisik belum diuji.
+**Riwayat v1.0.0 (paper):** build APK debug dan lint Android berhasil. Sebanyak 25 tes mesin dan 11 skenario integrasi browser desktop/seluler lolos. Pengujian data pasar menggunakan fixture; pemasangan pada HP fisik belum diuji.
 
 - [Unduh artifact Android](https://github.com/hengkihermawan56-max/Finex/actions/runs/41972318176/artifacts/13391050002): ekstrak ZIP, kemudian pasang `HENGKI-Solana-Desk-debug.apk`.
 - [Hasil build dan lint Android](https://github.com/hengkihermawan56-max/Finex/actions/runs/41972318176)

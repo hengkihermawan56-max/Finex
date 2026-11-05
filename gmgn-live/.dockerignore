@@ -1,0 +1,7 @@
+secrets
+data
+.env
+config.json
+node_modules
+test-results
+*.pem

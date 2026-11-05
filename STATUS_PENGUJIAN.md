@@ -1,5 +1,11 @@
 # Status pengujian · 5 November 2026
 
+## Versi 1.1 — GMGN server dan APK pembuka panel
+
+Mesin server memiliki 25 tes lokal yang lolos. Pengujian menggunakan wallet/kunci sintetis dan transport tiruan; tidak ada transaksi GMGN sungguhan yang dikirim. Server belum dipasang dan belum memiliki API key produksi. Batas dana default nol. CI memeriksa server, panel browser, image Docker dan APK.
+
+## Riwayat versi 1.0 — paper
+
 | Bagian | Hasil |
 |---|---|
 | Mesin simulasi dan adaptor data | 25 tes Node lolos |

@@ -6,3 +6,7 @@ local.properties
 *.keystore
 .env
 test-results/
+**/secrets/
+**/data/
+*.pem
+gmgn-live/config.json
