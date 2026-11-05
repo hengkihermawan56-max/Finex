@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1013">
+  <meta name="description" content="HENGKI Solana Desk: latihan trading Solana dengan enam modul transparan dan pencatatan risiko.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src https://api.dexscreener.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <style>:root{color-scheme:dark;--bg:#0a1012;--card:#101a17;--text:#e7f1ed;--muted:#6d897c;--line:#213429;--green:#3ddba2;--red:#f48b99}
+
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:84px}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button,a,input,textarea{ -webkit-tap-highlight-color:transparent}button,a{touch-action:manipulation}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}a{color:inherit;text-decoration:none}button{color:inherit}svg.icon{width:18px;height:18px;display:block;flex-shrink:0;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--green);outline-offset:3px}.skip-link{position:fixed;top:-100px;left:10px;background:var(--green);color:#05251a;z-index:100;padding:10px}.skip-link:focus{top:10px}.sidebar{width:224px;background:#0c1215;border-right:1px solid var(--line);position:fixed;inset:0 auto 0 0;padding:32px 20px;display:flex;flex-direction:column;z-index:20}.brand{display:flex;gap:12px;align-items:center;letter-spacing:2px;font-weight:800;font-size:19px}.brand-small{display:block;font-size:9px;letter-spacing:2.5px;color:#879c99;font-weight:600;margin-top:0}.side-label{font-size:9px;color:#536a68;letter-spacing:1.9px;margin:47px 12px 14px}.side-nav{display:grid;gap:7px}.side-nav a,.side-nav button{display:flex;align-items:center;gap:11px;border:none;text-align:left;background:transparent;border-radius:8px;padding:12px;color:#879a98;font-size:12px}.side-nav a:hover,.side-nav button:hover{background:#14201f;color:var(--text)}.side-nav a.active{background:#103429;color:#59e4b1}.side-nav b{margin-left:auto;border-radius:4px;background:#24483a;padding:1px 6px;font-size:10px}.side-bottom{margin-top:auto;border-top:1px solid var(--line);padding:22px 10px 0;font-size:9px;letter-spacing:1px;color:var(--green)}.side-bottom p{letter-spacing:0;color:#748b87;font-size:11px;line-height:1.8}.version{display:block;margin-top:20px;font-size:9px;color:#475c59;letter-spacing:.5px}.tiny-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--green);vertical-align:middle;margin-right:5px}.workspace{margin-left:224px}.topbar{height:73px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;padding:0 40px;color:#9cafab;background:#0b1114}.breadcrumb{font-size:11px}.breadcrumb span{margin:0 15px;color:#405550}.top-right{display:flex;gap:21px;align-items:center}.avatar{display:grid;place-items:center;width:31px;height:31px;border:1px solid #2f4840;background:#1b2b25;border-radius:50%;font-size:12px;color:#a7d7c6}.mobile-brand{display:none}main{max-width:1600px;margin:0 auto;padding:34px 40px 26px}.page-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:23px}.eyebrow{font-size:9px;letter-spacing:2.5px;color:#758c87;margin:0 0 5px}h1{font-size:32px;font-weight:660;letter-spacing:-1px;margin:0;line-height:1.3}.heading-dot{color:var(--green)}.subtitle{font-size:12px;color:var(--muted);margin:8px 0 0}.settings-top{display:none!important}.session-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 16px}.segmented{display:inline-flex;border:1px solid var(--line);padding:4px;background:#0b1214;border-radius:8px;gap:3px}.segmented button{border:0;background:transparent;border-radius:5px;padding:6px 17px;font-size:11px;color:var(--muted)}.segmented button.selected{background:#233a32;color:#c5fce5;box-shadow:0 1px 3px #0004}.run-status{display:flex;align-items:center;gap:7px;font-size:10px;color:#8fa6a1;flex-wrap:wrap}.status-dot{width:5px;height:5px;background:var(--green);border-radius:50%;box-shadow:0 0 0 3px #2cdb9f14}.status-dot.paused{background:#a3a183;box-shadow:none}.divider{margin:0 5px;color:#3d514d}#feed-time{color:#667f77}.notice{background:#10231e;border:1px solid #1b3d30;color:#94c7b4;font-size:10px;display:flex;align-items:center;gap:9px;border-radius:7px;padding:11px 14px;margin-bottom:21px}.notice svg{width:15px!important;height:15px!important}.notice.live{background:#10222a;border-color:#1c3e4c;color:#8cc2d9}.error-banner{background:#341b21;border:1px solid #68343e;border-radius:8px;padding:13px 16px;color:#ffb4bd;font-size:12px;margin-bottom:20px}.dashboard-grid{display:grid;grid-template-columns:minmax(0,1fr) 307px;gap:20px}.left-column,.right-column{min-width:0;display:flex;flex-direction:column;gap:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:11px;overflow:hidden}.card h2{font-size:12px;margin:0;font-weight:600;color:#d7e4df}.card-top{display:flex;align-items:center;justify-content:space-between;gap:8px}.equity-card{padding:22px 24px 0;background:linear-gradient(160deg,#14221e 0%,#10191a 40%,#101719 90%)}.equity-card h2{font-size:11px;color:#9aafa5;font-weight:500}.pill{font-size:8px;letter-spacing:.9px;font-weight:600;border:1px solid var(--line);padding:3px 7px;border-radius:4px;white-space:nowrap}.pill.green{background:#17392b;color:#73dcb0;border-color:#214631}.pill.quiet{background:#15211f;color:#829a91}.balance-line{display:flex;align-items:center;gap:13px;flex-wrap:wrap;margin-top:15px}.balance{font-size:42px;line-height:1.25;font-weight:650;letter-spacing:-1.8px;font-variant-numeric:tabular-nums}.performance{background:#132d23;border:1px solid #28503d;font-size:10px;letter-spacing:.2px;border-radius:5px;padding:3px 7px}.balance-meta{display:flex;gap:10px;flex-wrap:wrap;color:#6c877c;font-size:10px;margin-top:7px}.balance-meta>span:first-child{font-size:11px;font-weight:600}.positive{color:var(--green)!important}.negative{color:var(--red)!important}.neutral{color:#99b3a7!important}.chart-wrap{margin-top:21px}#equity-chart{width:100%;height:148px;overflow:visible;display:block}.chart-axis{display:flex;justify-content:space-between;gap:8px;color:#506c5f;font-size:8px;margin-top:7px;letter-spacing:.5px}.chart-axis span:nth-child(2){font-size:7px}.equity-footer{margin:19px -24px 0;padding:12px 24px;border-top:1px solid #23352c;display:flex;justify-content:space-between;font-size:9px;color:#728e80}.stats-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.stat{padding:16px 17px}.stat-label{display:flex;justify-content:space-between;align-items:center;gap:8px;color:#7b928b;font-size:10px}.stat-label svg{width:14px;height:14px;color:#4c6c5f}.stat strong{display:block;font-size:20px;font-weight:600;letter-spacing:-.5px;white-space:nowrap;margin-top:10px;line-height:1.3}.stat small{display:block;color:#58736a;font-size:8px;margin-top:6px}.section-head{padding:19px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px}.section-head p{margin:4px 0 0;color:#69847b;font-size:9px}.table-scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th{text-align:left;color:#5a776b;font-size:7px;letter-spacing:.8px;font-weight:600;background:#0e1815;padding:10px 12px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}th:first-child,td:first-child{padding-left:20px}td{font-size:9px;padding:13px 12px;border-bottom:1px solid #1a2924;color:#a1b8ad;font-variant-numeric:tabular-nums}tbody tr:last-child td{border-bottom:0}.token-cell{display:flex;gap:8px;align-items:center}.token-avatar{height:27px;width:27px;border-radius:8px;background:#233c30;color:#88c7a7;display:grid;place-items:center;font-size:10px;font-weight:700}.token-info b{display:block;color:#d8e8df;font-weight:600;font-size:10px}.token-info small{font-size:7px;color:#547464}.score{display:inline-block;padding:2px 6px;border-radius:4px;background:#1e352a;color:#90d1ab;font-size:8px}.filter-pill{font-size:8px;background:#19362a;color:#74d3a0;border-radius:4px;padding:3px 6px}.filter-pill.fail{background:#222c26;color:#7b8e7f}.table-note{border-top:1px solid var(--line);padding:11px 20px;color:#5f7d6c;font-size:8px}.control-card{padding:18px}.primary-button{display:flex;align-items:center;justify-content:center;gap:8px;border:0;width:100%;height:41px;background:var(--green);color:#04331f;border-radius:7px;font-size:11px;font-weight:700;margin-top:16px;box-shadow:0 2px 12px #12b57f11}.primary-button:hover{background:#64edbb}.primary-button.paused-action{background:#26463a;color:#92e3bf}.secondary-controls{display:grid;grid-template-columns:1.1fr 1fr;gap:8px;margin-top:9px}.secondary-controls button{height:34px;background:#16251e;border:1px solid #263e30;border-radius:6px;font-size:9px;color:#9bb9a9;display:flex;align-items:center;justify-content:center;gap:6px}.secondary-controls svg{width:11px;height:11px}.control-note{font-size:8px;line-height:1.7;color:#60836e;margin-top:12px}.agents-card .section-head{padding-bottom:12px}.live-badge{font-size:7px;letter-spacing:.8px;color:#7b9e8b;display:flex;align-items:center}.live-badge .tiny-dot{width:4px;height:4px}.agent-list{padding:0 18px 7px}.agent{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #1c2c24}.agent:last-child{border-bottom:0}.agent-symbol{height:29px;width:29px;display:grid;place-items:center;border-radius:7px;background:#1b3027;color:#93c8a9;flex-shrink:0}.agent:nth-child(2) .agent-symbol{background:#322d20;color:#cab476}.agent:nth-child(3) .agent-symbol{background:#2a2739;color:#aca1dc}.agent:nth-child(4) .agent-symbol{background:#1d3433;color:#80cabf}.agent:nth-child(5) .agent-symbol{background:#33272d;color:#c19aa9}.agent:nth-child(6) .agent-symbol{background:#232e39;color:#8faece}.agent-symbol svg{width:14px;height:14px}.agent-text{min-width:0}.agent-text strong{font-size:10px;display:block;line-height:1.4;font-weight:600}.agent-text small{display:block;font-size:8px;color:#60816e;line-height:1.3;margin-top:3px}.agent-value{margin-left:auto;font-size:8px;white-space:nowrap;color:#9cc3ab;background:#1d3024;border:1px solid #294331;padding:3px 5px;border-radius:4px}.agent-footnote{padding:10px 18px;border-top:1px solid var(--line);color:#526f5d;font-size:7px;display:flex;gap:6px;align-items:center}.agent-footnote svg{width:10px;height:10px}.risk-card{padding:18px}.risk-card .card-top{margin-bottom:12px}.risk-card .card-top svg{color:#6c8c77;width:14px;height:14px}.risk-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:9px;color:#7c9a86}.risk-row b{font-weight:500;font-size:9px;color:#b4cfbb;font-variant-numeric:tabular-nums}.allocation-track{height:4px;background:#1f3327;margin-top:12px;border-radius:4px;overflow:hidden}.allocation-track span{display:block;height:100%;width:0;background:var(--green);transition:width .3s}.risk-caption{color:#536f5b;font-size:8px;line-height:1.6;margin:10px 0 0}.positions-card,.journal-card{margin-top:20px;scroll-margin-top:20px}.count-badge{font-size:9px;display:inline-block;padding:1px 6px;border-radius:4px;background:#20372a;color:#83bb97;margin-left:5px}.empty-state{text-align:center;padding:28px 22px 32px;color:#5b7966;font-size:10px}.empty-state .empty-title{display:block;font-size:12px;color:#8aa996;margin-bottom:5px}.position-row{display:grid;grid-template-columns:1.5fr 1fr 1fr auto;align-items:center;gap:14px;padding:17px 20px;border-top:1px solid var(--line)}.position-value{font-size:11px;color:#b3ccbc;font-variant-numeric:tabular-nums}.position-value small{display:block;color:#597b63;font-size:8px}.outline-button{border:1px solid #294333;background:#15231b;color:#9dbda8;border-radius:6px;padding:7px 10px;font-size:9px;display:inline-flex;align-items:center;justify-content:center;gap:7px}.outline-button svg{width:12px;height:12px}.journal-row{display:grid;grid-template-columns:68px 23px minmax(0,1fr) auto;gap:10px;padding:12px 20px;border-top:1px solid #1b2a21;align-items:center;font-size:10px}.journal-time{font-size:8px;color:#5b7b65}.journal-type{border-radius:5px;background:#1e3426;color:#80c698;display:grid;place-items:center;height:22px;width:22px}.journal-type.sell{background:#312a20;color:#ceb27a}.journal-type.risk{background:#382229;color:#e493a4}.journal-type svg{width:12px;height:12px}.journal-message{color:#9cbba7;overflow-wrap:anywhere}.journal-amount{font-size:9px;color:#97b6a2;white-space:nowrap}.page-footer{margin:25px 0 0;display:flex;justify-content:space-between;align-items:flex-start;gap:25px;padding-bottom:15px;color:#607e69;font-size:8px;letter-spacing:.5px}.page-footer>span{flex-shrink:0;padding-top:5px}.page-footer p{max-width:460px;margin:0;font-size:8px;line-height:1.8;letter-spacing:0}.text-button{border:0;background:transparent;color:#7ba68b;font-size:9px;padding:3px 0;white-space:nowrap}.muted{color:var(--muted)}.icon-button{display:flex;align-items:center;justify-content:center;border:1px solid #284030;background:#14201a;color:#7f9e89;border-radius:6px;width:30px;height:30px}.icon-button svg{width:13px;height:13px}.icon-button:hover{background:#26392b}.mobile-nav{display:none}dialog{width:min(580px,calc(100% - 28px));padding:0;background:#111e17;color:var(--text);border:1px solid #36523e;border-radius:13px;max-height:88dvh;box-shadow:0 25px 100px #000a}dialog::backdrop{background:#030905c9;backdrop-filter:blur(4px)}.modal-heading{display:flex;align-items:center;justify-content:space-between;padding:20px 22px;border-bottom:1px solid var(--line)}.modal-heading h2{font-size:16px;margin:0}.modal-heading button{font-size:22px}#modal-body{padding:20px 22px;overflow:auto}.modal-intro{font-size:11px;color:#91af9c;margin:0 0 17px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.form-grid label,.field{display:block;font-size:10px;color:#a1bba7}.form-grid input,.field input,.field textarea{display:block;margin-top:5px;width:100%;background:#0a140f;border:1px solid #304a36;border-radius:6px;color:#dceee1;padding:9px 10px;font-size:12px}.field{margin-top:15px}.field small{display:block;color:#678971;font-size:9px;margin-top:5px}.wide{grid-column:1/-1}.form-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:21px}.form-actions button{padding:9px 15px;border-radius:6px;border:1px solid #37533e;background:#233a29;color:#b3d3bb;font-size:11px}.form-actions .confirm{background:var(--green);border-color:var(--green);color:#053521;font-weight:600}.form-error{font-size:11px;color:#ff9daa;min-height:20px;margin-top:10px}.about-list{padding-left:19px;color:#a6c2ae;font-size:12px;line-height:1.9}.about-list li{margin-bottom:12px}.about-list a{color:#5dd69c;text-decoration:underline}.modal-note{font-size:11px;color:#8eaa95}.toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);max-width:calc(100% - 30px);background:#244632;border:1px solid #497e55;color:#cff1d5;border-radius:8px;padding:12px 20px;z-index:100;font-size:12px;box-shadow:0 6px 30px #0009}.export-text{width:100%;height:180px;background:#09140d;color:#a6c9b1;border:1px solid #2f4a35;font:10px/1.5 monospace;padding:10px}.full-address{font-family:monospace;font-size:9px;overflow-wrap:anywhere;color:#8faf97;background:#0c160f;border-radius:5px;padding:9px;margin:7px 0 13px}[hidden]{display:none!important}
+@media(min-width:1550px){.dashboard-grid{grid-template-columns:minmax(0,1fr) 337px}#equity-chart{height:186px}.balance{font-size:48px}.agents-card .agent{padding:14px 0}td{font-size:11px}th{font-size:8px}.section-head p,.table-note{font-size:10px}}
+@media(max-width:1200px){.sidebar{width:196px;padding:27px 15px}.workspace{margin-left:196px}.brand{font-size:16px}.brand img{width:33px;height:33px}.topbar{padding:0 27px}main{padding:28px 25px}.dashboard-grid{grid-template-columns:minmax(0,1fr) 272px;gap:15px}.equity-card{padding:18px 19px 0}.balance{font-size:34px}.equity-footer{margin-left:-19px;margin-right:-19px;padding-left:19px;padding-right:19px}.stat{padding:14px 12px}.stat strong{font-size:16px}.stat-label{font-size:8px;gap:3px}.stat-label svg{width:11px;height:11px}.page-footer{flex-wrap:wrap;gap:12px}}
+@media(max-width:1000px){.sidebar{width:178px;padding:25px 12px}.workspace{margin-left:178px}.side-nav a,.side-nav button{font-size:10px;padding:11px 9px}.brand{gap:8px}.brand-small{font-size:8px}.dashboard-grid{grid-template-columns:minmax(0,1fr) 246px;gap:13px}.agents-card .section-head,.agent-list{padding-left:14px;padding-right:14px}.agent{gap:7px}.agent-symbol{width:25px;height:25px}.balance{font-size:30px}.chart-axis span:nth-child(2){display:none}.stats-grid{gap:7px}.stat strong{font-size:14px}.stat small{font-size:7px}.stat-label svg{display:none}.section-head{padding:17px}.card h2{font-size:11px}.topbar{height:62px}main{padding:25px 20px}}
+@media(max-width:820px){.sidebar{display:none}.workspace{margin-left:0}.topbar{padding:0 22px}.breadcrumb{display:none}.mobile-brand{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:750;letter-spacing:1px}.mobile-brand .muted{font-size:9px;letter-spacing:1px;font-weight:500}.top-right{gap:12px}main{padding:25px 22px 84px}.dashboard-grid{grid-template-columns:minmax(0,1fr) 270px;gap:16px}.settings-top{display:flex!important}.stat strong{font-size:16px}.mobile-nav{display:flex;justify-content:space-around;align-items:center;position:fixed;bottom:0;left:0;right:0;padding:10px 8px calc(10px + env(safe-area-inset-bottom));border-top:1px solid #2c4132;background:#0b1510f5;backdrop-filter:blur(12px);z-index:30}.mobile-nav a,.mobile-nav button{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:8px;color:#8aa895;min-width:52px;background:none;border:0}.mobile-nav svg{width:17px;height:17px}.toast{bottom:80px}.balance{font-size:31px}}
+@media(max-width:640px){.topbar{height:59px;padding:0 18px}.top-right .pill{display:none}.avatar{width:27px;height:27px;font-size:10px}main{padding:22px 16px 90px}.eyebrow{font-size:8px;letter-spacing:2px}h1{font-size:29px}.subtitle{font-size:10px;max-width:280px;line-height:1.6}.page-heading{margin-bottom:18px}.session-bar{align-items:center;flex-wrap:wrap;margin-bottom:13px}.segmented button{padding:5px 14px;font-size:10px}.run-status{font-size:8px;gap:5px}.run-status .divider,#feed-time{display:none}.notice{font-size:9px;padding:10px 11px;line-height:1.6;margin-bottom:16px;align-items:flex-start}.notice svg{margin-top:2px}.dashboard-grid{display:flex;flex-direction:column;gap:16px}.right-column{display:contents}.left-column{display:contents}.equity-card{order:0;padding:18px 18px 0}.control-card{order:1;padding:14px 16px}.stats-grid{order:2;gap:9px}.agents-card{order:3}.candidates-card{order:4}.risk-card{order:5}.balance{font-size:37px;letter-spacing:-1.5px}.performance{font-size:9px}.balance-meta{font-size:9px;gap:7px}.balance-meta>span:first-child{font-size:10px}.chart-wrap{margin-top:19px}#equity-chart{height:138px}.chart-axis{font-size:7px}.chart-axis span:nth-child(2){display:block;font-size:5px}.equity-footer{padding:11px 18px;margin:15px -18px 0;font-size:8px}.control-card .card-top{display:none}.primary-button{margin-top:0;height:42px;font-size:12px}.secondary-controls button{height:35px;font-size:10px}.control-note{font-size:8px;margin-top:9px}.stat{padding:14px 11px}.stat strong{font-size:15px;letter-spacing:-.5px;margin-top:8px}.stat-label{font-size:8px}.stat small{font-size:7px;margin-top:5px;line-height:1.4}.section-head{padding:17px 16px}.card h2{font-size:12px}.section-head p{font-size:9px}.agent-list{padding:0 16px 6px}.agent{padding:12px 0;gap:11px}.agent-symbol{width:32px;height:32px}.agent-symbol svg{width:16px;height:16px}.agent-text strong{font-size:12px}.agent-text small{font-size:9px}.agent-value{font-size:9px;padding:4px 8px}.agent-footnote{font-size:8px;padding:12px 16px}.live-badge{font-size:8px}.risk-card{padding:17px}.risk-row{font-size:10px}.risk-row b{font-size:10px}.risk-caption{font-size:9px}th{font-size:7px;padding:10px 10px}td{font-size:9px;padding:12px 10px}th:first-child,td:first-child{padding-left:16px}.token-avatar{width:26px;height:26px}.token-info b{font-size:10px}.table-note{font-size:8px;padding:10px 16px}.position-row{grid-template-columns:1fr 1fr auto;padding:14px 16px;gap:10px}.position-row .position-cost{display:none}.position-value{font-size:10px}.positions-card,.journal-card{margin-top:16px}.journal-row{grid-template-columns:48px 21px minmax(0,1fr);padding:12px 16px;gap:8px}.journal-time{font-size:7px}.journal-message{font-size:9px}.journal-amount{grid-column:3;font-size:9px;margin-top:-7px}.page-footer{margin-top:21px;display:block}.page-footer p{margin:10px 0;font-size:9px}.page-footer>span{font-size:9px}.page-footer .text-button{margin-top:5px;font-size:10px}.outline-button{font-size:8px;padding:7px 9px}.modal-heading,#modal-body{padding:17px}.form-grid{gap:11px}.form-grid label{font-size:9px}dialog{max-height:90dvh}.topbar .mobile-brand img{width:26px;height:26px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+
+  <title>HENGKI · Solana Desk</title>
+</head>
+<body>
+  <a class="skip-link" href="#overview">Lompat ke dasbor</a>
+  <aside class="sidebar">
+    <a class="brand" href="#overview" aria-label="Hengki Solana Desk"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSIxMTYiIGZpbGw9IiMxMzJjMjMiLz48cGF0aCBkPSJNMTMwIDEyOXYyNTRoNjFWMjgxaDEzMHYxMDJoNjFWMTI5aC02MXY5NkgxOTF2LTk2eiIgZmlsbD0iIzcyZjBiZCIvPjxwYXRoIGQ9Im0yNjUgMTE2LTM5IDc3aDQ5bC0yNCA1MCA4OC05NGgtNTdsMjYtMzN6IiBmaWxsPSIjZjBmZmY5Ii8+PC9zdmc+Cg==" alt="" width="38" height="38"><span>HENGKI<span class="brand-small">SOLANA DESK</span></span></a>
+    <div class="side-label">WORKSPACE</div>
+    <nav class="side-nav" aria-label="Navigasi utama">
+      <a href="#overview" class="active"><span data-icon="grid"></span> Ringkasan</a>
+      <a href="#positions"><span data-icon="layers"></span> Posisi aktif <b id="side-position-count">0</b></a>
+      <a href="#journal"><span data-icon="list"></span> Jurnal transaksi</a>
+      <button data-action="settings"><span data-icon="settings"></span> Pengaturan</button>
+    </nav>
+    <div class="side-bottom"><span class="tiny-dot"></span> PAPER TRADING ONLY<p>Latihan dengan modal virtual.<br>Strategi berbasis aturan.</p><span class="version">v1.0.0 / GitHub edition</span></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><span class="mobile-brand"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSIxMTYiIGZpbGw9IiMxMzJjMjMiLz48cGF0aCBkPSJNMTMwIDEyOXYyNTRoNjFWMjgxaDEzMHYxMDJoNjFWMTI5aC02MXY5NkgxOTF2LTk2eiIgZmlsbD0iIzcyZjBiZCIvPjxwYXRoIGQ9Im0yNjUgMTE2LTM5IDc3aDQ5bC0yNCA1MCA4OC05NGgtNTdsMjYtMzN6IiBmaWxsPSIjZjBmZmY5Ii8+PC9zdmc+Cg==" alt="" width="28" height="28"> HENGKI<span class="muted">/ DESK</span></span><span class="breadcrumb">Workspace <span>/</span> Solana Desk</span><div class="top-right"><span class="pill quiet">SOLANA</span><span class="avatar" aria-label="Hengki">H</span></div></header>
+    <main id="overview">
+      <div class="page-heading"><div><p class="eyebrow">YOUR TRADING WORKSPACE</p><h1>Solana Desk<span class="heading-dot">.</span></h1><p class="subtitle">Pantau peluang. Uji strategi. Catat setiap keputusan.</p></div><button class="icon-button settings-top" data-action="settings" aria-label="Buka pengaturan"><span data-icon="settings"></span></button></div>
+      <div class="session-bar"><div class="segmented" role="group" aria-label="Sumber data"><button id="mode-demo" data-mode="demo" class="selected">Demo</button><button id="mode-live" data-mode="live">Harga pasar</button></div><div class="run-status"><span id="status-dot" class="status-dot paused"></span><span id="run-status">Siap · dijeda</span><span class="divider">/</span><span id="feed-time">Belum ada data</span></div></div>
+      <div id="notice" class="notice" role="status"><span data-icon="info"></span><span id="notice-text">MODE DEMO · Harga token fiktif untuk latihan. Seluruh saldo dan transaksi bersifat virtual.</span></div>
+      <div id="error-banner" class="error-banner" role="alert" hidden></div>
+      <section class="dashboard-grid">
+        <div class="left-column">
+          <section class="card equity-card" aria-labelledby="equity-heading">
+            <div class="card-top"><h2 id="equity-heading">Total ekuitas virtual</h2><span class="pill green" id="source-label">DEMO FEED</span></div>
+            <div class="balance-line"><span id="equity" class="balance">Rp1.000.000</span><span id="pnl-percent" class="performance neutral">0,00%</span></div>
+            <div class="balance-meta"><span id="pnl" class="neutral">Rp0</span><span>dari modal bersih <span id="net-flow">Rp1.000.000</span></span></div>
+            <div class="chart-wrap"><svg id="equity-chart" viewBox="0 0 700 180" role="img" aria-label="Grafik ekuitas virtual berdasarkan pemindaian sesi"><defs><linearGradient id="chart-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#2cdb9f" stop-opacity="0.19"/><stop offset="100%" stop-color="#2cdb9f" stop-opacity="0"/></linearGradient></defs><path id="chart-area" fill="url(#chart-fill)"/><path id="chart-grid" d="M0 35H700 M0 90H700 M0 145H700" fill="none" stroke="#20302e" stroke-dasharray="3 6"/><path id="chart-line" fill="none" stroke="#39dca5" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle id="chart-tip" r="4" fill="#53efb9"/></svg><div class="chart-axis"><span id="chart-start">Awal sesi</span><span>EKUITAS SETELAH ESTIMASI BIAYA</span><span id="chart-end">Sekarang</span></div></div>
+            <div class="equity-footer"><span><span class="tiny-dot"></span> <span id="scan-interval">Demo · pembaruan 4 detik</span></span><span id="quote-count">0 pool terpantau</span></div>
+          </section>
+          <div class="stats-grid">
+            <div class="card stat"><span class="stat-label">Saldo bebas<span data-icon="wallet"></span></span><strong id="cash">Rp1.000.000</strong><small>Modal virtual tersedia</small></div>
+            <div class="card stat"><span class="stat-label">Profit terealisasi<span data-icon="trend"></span></span><strong id="realized">Rp0</strong><small id="trade-count">0 transaksi selesai</small></div>
+            <div class="card stat"><span class="stat-label">Win rate<span data-icon="target"></span></span><strong id="winrate">—</strong><small id="win-detail">Belum ada transaksi selesai</small></div>
+          </div>
+          <section class="card candidates-card" aria-labelledby="market-heading"><div class="section-head"><div><h2 id="market-heading">Radar token</h2><p>Skor strategi 0–100, berdasarkan data yang tersedia.</p></div><button id="refresh" class="icon-button" aria-label="Perbarui data pasar"><span data-icon="refresh"></span></button></div><div class="table-scroll"><table><thead><tr><th>TOKEN / POOL</th><th>HARGA USD</th><th>5 MENIT</th><th>LIKUIDITAS</th><th>SKOR</th><th>HASIL FILTER</th></tr></thead><tbody id="candidates-body"></tbody></table></div><div class="table-note" id="market-note">Token berakhiran -D adalah token fiktif.</div></section>
+        </div>
+        <div class="right-column">
+          <section class="card control-card"><div class="card-top"><h2>Kontrol sesi</h2><span class="pill quiet">VIRTUAL</span></div><button id="toggle-run" class="primary-button"><span data-icon="play"></span><span id="toggle-label">Mulai bot</span></button><div class="secondary-controls"><button data-action="cash">± Modal virtual</button><button data-action="reset"><span data-icon="refresh"></span>Sesi baru</button></div><div class="control-note">Jeda menghentikan beli baru. Posisi tetap dipantau saat aplikasi terbuka.</div></section>
+          <section class="card agents-card" aria-labelledby="agents-heading"><div class="section-head"><div><h2 id="agents-heading">Desk · 6 modul</h2><p>Alur kerja berbasis aturan</p></div><span class="live-badge"><span class="tiny-dot"></span><span id="module-status">READY</span></span></div><div id="agent-list" class="agent-list"></div><div class="agent-footnote"><span data-icon="info"></span>Setiap angka berasal dari pemrosesan sesi ini.</div></section>
+          <section class="card risk-card"><div class="card-top"><h2>Pagar risiko</h2><span data-icon="shield"></span></div><div class="risk-row"><span>Alokasi per posisi</span><b id="risk-allocation">8%</b></div><div class="risk-row"><span>Stop loss / take profit</span><b id="risk-stops">−6% / +12%</b></div><div class="risk-row"><span>Batas rugi sesi</span><b id="risk-session">−5%</b></div><div class="risk-row"><span>Posisi bersamaan</span><b id="risk-slots">0 / 3</b></div><div class="allocation-track"><span id="allocation-bar"></span></div><p class="risk-caption" id="risk-caption">Harga terakhir dipakai untuk estimasi; harga eksekusi nyata bisa berbeda.</p></section>
+        </div>
+      </section>
+      <section class="card positions-card" id="positions"><div class="section-head"><div><h2>Posisi aktif <span id="position-badge" class="count-badge">0</span></h2><p>Nilai dan profit/rugi sudah memperhitungkan estimasi biaya keluar.</p></div><span class="pill quiet">PAPER</span></div><div id="positions-list"></div></section>
+      <section class="card journal-card" id="journal"><div class="section-head"><div><h2>Jurnal transaksi</h2><p>Keputusan bot beserta alasan beli, jual, dan penghentian risiko.</p></div><button data-action="export" class="outline-button"><span data-icon="download"></span>Ekspor CSV</button></div><div id="journal-list"></div></section>
+      <footer class="page-footer"><span>HENGKI SOLANA DESK <span class="muted">/ 1.0.0</span></span><p>Seluruh transaksi merupakan simulasi. Pemeriksaan mint authority, freeze authority, pemilik token dan LP belum tersedia. Aplikasi perlu tetap terbuka untuk memantau posisi.</p><button data-action="about" class="text-button">Tentang strategi & sumber data <span>↗</span></button></footer>
+    </main>
+  </div>
+  <nav class="mobile-nav" aria-label="Navigasi seluler"><a href="#overview"><span data-icon="grid"></span>Ringkasan</a><a href="#positions"><span data-icon="layers"></span>Posisi</a><a href="#journal"><span data-icon="list"></span>Jurnal</a><button data-action="settings"><span data-icon="settings"></span>Atur</button></nav>
+  <dialog id="modal"><div class="modal-heading"><h2 id="modal-title"></h2><button id="modal-close" class="icon-button" aria-label="Tutup dialog">×</button></div><div id="modal-body"></div></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+<script>
+// All amounts in the ledger are IDR. Quotes are USD, converted at a fixed,
+// user-specified reference rate. This engine cannot submit blockchain transactions.
+const SCHEMA = 1;
+const STALE_MS = 60_000;
+const DEFAULT_SETTINGS = Object.freeze({
+  capital: 1_000_000, usdIdr: 16_000, positionPct: 8, maxPositions: 3,
+  stopPct: 6, takeProfitPct: 12, trailPct: 4, trailActivationPct: 8,
+  maxLossPct: 5, feePct: 0.3, slippagePct: 0.5,
+  minLiquidity: 50_000, minVolumeH1: 10_000, minBuysM5: 25,
+  minAgeMinutes: 30, minScore: 70, cooldownMinutes: 5
+});
+
+const RANGES = {
+  capital: [10_000, 1e12], usdIdr: [1, 1e6], positionPct: [1, 20],
+  maxPositions: [1, 5], stopPct: [1, 30], takeProfitPct: [2, 100],
+  trailPct: [1, 20], trailActivationPct: [2, 50], maxLossPct: [1, 25],
+  feePct: [0, 5], slippagePct: [0, 20], minLiquidity: [1_000, 1e10],
+  minVolumeH1: [100, 1e10], minBuysM5: [1, 100_000],
+  minAgeMinutes: [1, 1440], minScore: [1, 100], cooldownMinutes: [1, 1440]
+};
+const positive = x => Number.isFinite(x) && x > 0;
+const nonnegative = x => Number.isFinite(x) && x >= 0;
+const clamp = (x, lo, hi) => Math.min(hi, Math.max(lo, x));
+
+function validateSettings(input = {}) {
+  const settings = { ...DEFAULT_SETTINGS, ...input };
+  for (const [key, [min, max]] of Object.entries(RANGES)) {
+    if (!Number.isFinite(settings[key]) || settings[key] < min || settings[key] > max)
+      throw new Error(`Pengaturan ${key} harus di antara ${min} dan ${max}.`);
+  }
+  if (!Number.isInteger(settings.maxPositions) || !Number.isInteger(settings.minBuysM5))
+    throw new Error('Jumlah posisi dan transaksi beli harus bilangan bulat.');
+  if (settings.positionPct * settings.maxPositions > 80)
+    throw new Error('Total alokasi posisi maksimal 80% saldo.');
+  if (settings.trailActivationPct <= settings.trailPct)
+    throw new Error('Aktivasi trailing harus lebih tinggi daripada jarak trailing.');
+  return Object.fromEntries(Object.keys(DEFAULT_SETTINGS).map(k => [k, settings[k]]));
+}
+
+function newSession(settings = DEFAULT_SETTINGS, mode = 'demo', now = Date.now()) {
+  if (!['demo', 'live'].includes(mode)) throw new Error('Mode tidak dikenal.');
+  settings = validateSettings(settings);
+  return {
+    schema: SCHEMA, settings, mode, running: false, riskHalted: false,
+    createdAt: now, cash: settings.capital, netFlows: settings.capital,
+    positions: [], closed: [], journal: [], history: [{ t: now, equity: settings.capital }],
+    cooldowns: {}, counters: { scans: 0, examined: 0, passed: 0, entries: 0 },
+    lastDataAt: 0, lastReport: null, sequence: 0
+  };
+}
+
+function validQuote(q, mode, now = Date.now()) {
+  return !!q && q.source === mode && q.chainId === 'solana' &&
+    typeof q.key === 'string' && q.key.length > 0 && q.key.length <= 100 &&
+    typeof q.tokenAddress === 'string' && q.tokenAddress.length > 0 &&
+    positive(q.priceUsd) && positive(q.observedAt) &&
+    q.observedAt <= now + 1000 && now - q.observedAt <= STALE_MS;
+}
+
+function estimatedValue(position, settings) {
+  return position.quantity * position.markUsd * settings.usdIdr *
+    (1 - settings.slippagePct / 100) * (1 - settings.feePct / 100);
+}
+
+function portfolio(state, now = Date.now()) {
+  const invested = state.positions.reduce((n, p) => n + estimatedValue(p, state.settings), 0);
+  const equity = state.cash + invested;
+  const pnl = equity - state.netFlows;
+  const wins = state.closed.filter(t => t.pnl > 0).length;
+  return { equity, invested, pnl, pnlPct: state.netFlows ? pnl / state.netFlows * 100 : 0,
+    realized: state.closed.reduce((n, p) => n + p.pnl, 0),
+    trades: state.closed.length, wins, winRate: state.closed.length ? wins / state.closed.length * 100 : null,
+    stalePositions: state.positions.filter(p => now - p.lastQuoteAt > STALE_MS).length
+  };
+}
+
+// Score is a heuristic from 0–100. It is NOT a probability of profit or token safety.
+function evaluate(q, settings, now = Date.now()) {
+  const reasons = [];
+  if (!positive(q.liquidityUsd) || q.liquidityUsd < settings.minLiquidity) reasons.push('Likuiditas rendah/tidak tersedia');
+  if (!nonnegative(q.volumeH1) || q.volumeH1 < settings.minVolumeH1) reasons.push('Volume 1 jam kurang');
+  if (!nonnegative(q.buysM5) || q.buysM5 < settings.minBuysM5) reasons.push('Transaksi beli 5m kurang');
+  if (!nonnegative(q.sellsM5)) reasons.push('Data transaksi jual tidak tersedia');
+  const total = (q.buysM5 || 0) + (q.sellsM5 || 0);
+  const ratio = total > 0 ? q.buysM5 / total : 0;
+  if (ratio < 0.55) reasons.push('Rasio beli di bawah 55%');
+  if (!Number.isFinite(q.changeM5) || q.changeM5 < 0.5 || q.changeM5 > 20) reasons.push('Momentum 5m di luar 0,5–20%');
+  if (!positive(q.createdAt) || now - q.createdAt < settings.minAgeMinutes * 60_000 || q.createdAt > now)
+    reasons.push('Umur pool belum memenuhi syarat');
+  if (!positive(q.fdvUsd)) reasons.push('FDV tidak tersedia');
+  else if (positive(q.liquidityUsd) && q.fdvUsd / q.liquidityUsd > 50) reasons.push('FDV/likuiditas di atas 50×');
+  const score = Math.round(
+    clamp(Math.log10(Math.max(1, q.liquidityUsd || 0) / settings.minLiquidity + 1) * 36, 0, 25) +
+    clamp(Math.log10(Math.max(1, q.volumeH1 || 0) / settings.minVolumeH1 + 1) * 32, 0, 20) +
+    clamp(ratio * 30, 0, 30) +
+    clamp((Number.isFinite(q.changeM5) ? q.changeM5 : 0) * 2, 0, 15) +
+    (q.buysM5 >= settings.minBuysM5 * 2 ? 10 : 5)
+  );
+  if (score < settings.minScore) reasons.push(`Skor ${score} di bawah ${settings.minScore}`);
+  return { quote: q, score, ratio, reasons, passed: reasons.length === 0 };
+}
+
+function logEvent(state, type, message, now = Date.now(), details = {}) {
+  state.journal.unshift({ id: ++state.sequence, t: now, type, message: String(message).slice(0, 300), ...details });
+  state.journal = state.journal.slice(0, 1000);
+}
+
+function openPosition(state, q, now = Date.now(), score = null) {
+  const s = state.settings;
+  if (!state.running || state.riskHalted || !validQuote(q, state.mode, now)) return false;
+  if (state.positions.length >= s.maxPositions || state.positions.some(p => p.tokenAddress === q.tokenAddress)) return false;
+  if ((state.cooldowns[q.tokenAddress] || 0) > now) return false;
+  const budget = Math.min(portfolio(state, now).equity * s.positionPct / 100, state.cash);
+  if (budget < 10_000 || !positive(budget)) return false;
+  const fillIdr = q.priceUsd * s.usdIdr * (1 + s.slippagePct / 100);
+  const quantity = budget / (fillIdr * (1 + s.feePct / 100));
+  const position = {
+    id: ++state.sequence, key: q.key, tokenAddress: q.tokenAddress,
+    symbol: String(q.symbol || 'TOKEN').slice(0, 25), source: state.mode,
+    quantity, cost: budget, entryUsd: q.priceUsd * (1 + s.slippagePct / 100),
+    entryFee: budget - quantity * fillIdr,
+    markUsd: q.priceUsd, lastQuoteAt: q.observedAt, openedAt: now,
+    peakValue: 0, score
+  };
+  position.peakValue = estimatedValue(position, s);
+  state.cash -= budget;
+  if (Math.abs(state.cash) < 1e-7) state.cash = 0;
+  state.positions.push(position);
+  state.counters.entries += 1;
+  logEvent(state, 'buy', `Beli simulasi ${position.symbol}`, now, { amount: budget, token: q.tokenAddress });
+  return true;
+}
+
+function closePosition(state, key, q, reason = 'Manual', now = Date.now()) {
+  const index = state.positions.findIndex(p => p.key === key);
+  if (index < 0 || !validQuote(q, state.mode, now) || q.key !== key) return false;
+  const p = state.positions[index];
+  if (q.tokenAddress !== p.tokenAddress) return false;
+  p.markUsd = q.priceUsd;
+  p.lastQuoteAt = q.observedAt;
+  const proceeds = estimatedValue(p, state.settings);
+  const pnl = proceeds - p.cost;
+  const trade = { ...p, closedAt: now, exitUsd: q.priceUsd * (1 - state.settings.slippagePct / 100),
+    exitFee: p.quantity * q.priceUsd * state.settings.usdIdr *
+      (1 - state.settings.slippagePct / 100) * state.settings.feePct / 100,
+    proceeds, pnl, pnlPct: pnl / p.cost * 100, reason };
+  state.cash += proceeds;
+  state.positions.splice(index, 1);
+  state.closed.push(trade);
+  // Keep the complete closed-trade ledger. Never truncate financial history.
+  state.cooldowns[p.tokenAddress] = now + state.settings.cooldownMinutes * 60_000;
+  logEvent(state, 'sell', `${p.symbol} · ${reason}`, now, { amount: proceeds, pnl, token: p.tokenAddress });
+  return trade;
+}
+
+function processTick(state, inputQuotes, now = Date.now()) {
+  const quotes = inputQuotes.filter(q => validQuote(q, state.mode, now));
+  const byKey = new Map(quotes.map(q => [q.key, q]));
+  const s = state.settings;
+  state.counters.scans += 1;
+  state.counters.examined += quotes.length;
+  if (quotes.length) state.lastDataAt = Math.max(...quotes.map(q => q.observedAt));
+  for (const p of [...state.positions]) {
+    const q = byKey.get(p.key);
+    if (!q || p.tokenAddress !== q.tokenAddress) continue;
+    p.markUsd = q.priceUsd;
+    p.lastQuoteAt = q.observedAt;
+    const value = estimatedValue(p, s);
+    p.peakValue = Math.max(p.peakValue, value);
+    const gain = (value / p.cost - 1) * 100;
+    const peakGain = (p.peakValue / p.cost - 1) * 100;
+    let reason = null;
+    if (state.riskHalted) reason = 'Batas rugi sesi';
+    else if (gain <= -s.stopPct) reason = 'Stop loss';
+    else if (gain >= s.takeProfitPct) reason = 'Take profit';
+    else if (peakGain >= s.trailActivationPct && value <= p.peakValue * (1 - s.trailPct / 100)) reason = 'Trailing stop';
+    if (reason) closePosition(state, p.key, q, reason, now);
+  }
+  if (portfolio(state, now).pnlPct <= -s.maxLossPct && !state.riskHalted) {
+    state.running = false;
+    state.riskHalted = true;
+    logEvent(state, 'risk', 'Batas rugi sesi tercapai. Beli dihentikan; posisi dengan harga segar ditutup.', now);
+    for (const p of [...state.positions]) {
+      const q = byKey.get(p.key);
+      if (q) closePosition(state, p.key, q, 'Batas rugi sesi', now);
+    }
+  }
+  const uniqueTokens = new Set();
+  const candidates = quotes.filter(q => {
+    if (uniqueTokens.has(q.tokenAddress)) return false;
+    uniqueTokens.add(q.tokenAddress); return true;
+  }).map(q => evaluate(q, s, now)).sort((a, b) => b.score - a.score);
+  const passed = candidates.filter(c => c.passed);
+  state.counters.passed += passed.length;
+  const entriesBefore = state.counters.entries;
+  if (state.running && !state.riskHalted) for (const c of passed) openPosition(state, c.quote, now, c.score);
+  const report = { t: now, scanned: quotes.length, passed: passed.length,
+    entered: state.counters.entries - entriesBefore,
+    candidates: candidates.map(({ quote: q, ...rest }) => ({ ...rest, key: q.key, symbol: q.symbol, tokenAddress: q.tokenAddress })) };
+  state.lastReport = report;
+  state.history.push({ t: now, equity: portfolio(state, now).equity });
+  state.history = state.history.slice(-600);
+  for (const [token, until] of Object.entries(state.cooldowns)) if (until < now) delete state.cooldowns[token];
+  return report;
+}
+
+function moveVirtualCash(state, amount, now = Date.now()) {
+  if (!Number.isFinite(amount) || amount === 0 || Math.abs(amount) > 1e12) throw new Error('Nominal tidak valid.');
+  if (amount < 0 && -amount > state.cash) throw new Error('Saldo bebas tidak cukup.');
+  if (state.netFlows + amount < 10_000) throw new Error('Sisa modal sesi minimal Rp10.000.');
+  if (state.positions.length) throw new Error('Tutup semua posisi sebelum mengubah modal sesi.');
+  if (state.riskHalted) throw new Error('Mulai sesi baru setelah batas rugi tercapai.');
+  state.cash += amount;
+  state.netFlows += amount;
+  state.history.push({ t: now, equity: portfolio(state, now).equity });
+  logEvent(state, 'cash', amount > 0 ? 'Tambah modal virtual' : 'Kurangi modal virtual', now, { amount });
+}
+
+// Accept persisted state only after structural and ledger invariants hold.
+// A restored session always requires a deliberate restart; cached prices cannot trade.
+function restoreSession(raw, expectedMode) {
+  if (!raw || raw.schema !== SCHEMA || raw.mode !== expectedMode) throw new Error('Format sesi tidak sesuai.');
+  const settings = validateSettings(raw.settings);
+  if (!nonnegative(raw.cash) || !positive(raw.netFlows) || !positive(raw.createdAt) ||
+    !Array.isArray(raw.positions) || !Array.isArray(raw.closed) ||
+    !Array.isArray(raw.history) || !Array.isArray(raw.journal) ||
+    raw.positions.length > settings.maxPositions) throw new Error('Data sesi rusak.');
+  const addresses = new Set();
+  for (const p of [...raw.positions, ...raw.closed]) {
+    if (!p || typeof p.key !== 'string' || typeof p.tokenAddress !== 'string' ||
+      typeof p.symbol !== 'string' || !positive(p.quantity) || !positive(p.cost) ||
+      !positive(p.entryUsd) || !positive(p.markUsd) || !positive(p.openedAt) || !nonnegative(p.entryFee) ||
+      !positive(p.lastQuoteAt) || !nonnegative(p.peakValue) || p.source !== expectedMode)
+      throw new Error('Data posisi tidak valid.');
+  }
+  for (const p of raw.positions) {
+    if (addresses.has(p.tokenAddress)) throw new Error('Posisi ganda tidak valid.');
+    addresses.add(p.tokenAddress);
+  }
+  for (const t of raw.closed) if (!Number.isFinite(t.pnl) || !Number.isFinite(t.pnlPct) ||
+    !nonnegative(t.proceeds) || !positive(t.exitUsd) || !nonnegative(t.exitFee) ||
+    typeof t.reason !== 'string' || !positive(t.closedAt) || t.closedAt < t.openedAt ||
+    Math.abs(t.proceeds - t.cost - t.pnl) > 0.01 ||
+    Math.abs(t.pnl / t.cost * 100 - t.pnlPct) > 0.0001) throw new Error('Jurnal transaksi tidak valid.');
+  const expectedCash = raw.netFlows + raw.closed.reduce((n, t) => n + t.pnl, 0) - raw.positions.reduce((n, p) => n + p.cost, 0);
+  if (Math.abs(expectedCash - raw.cash) > 0.05) throw new Error('Rekonsiliasi saldo gagal.');
+  if (raw.history.some(p => !positive(p.t) || !nonnegative(p.equity)) || !Number.isSafeInteger(raw.sequence) || raw.sequence < 0 ||
+    !raw.counters || Object.values(raw.counters).some(v => !Number.isSafeInteger(v) || v < 0) ||
+    !['scans','examined','passed','entries'].every(k => Number.isSafeInteger(raw.counters[k]))) throw new Error('Riwayat sesi tidak valid.');
+  const state = structuredClone(raw);
+  state.settings = settings;
+  state.running = false;
+  state.riskHalted = !!raw.riskHalted;
+  state.lastReport = null;
+  state.cooldowns = Object.fromEntries(Object.entries(raw.cooldowns || {}).filter(([k,v]) => k.length <= 100 && Number.isFinite(v)));
+  return state;
+}
+
+function csvForTrades(state) {
+  const cell = v => {
+    let text = String(v ?? '');
+    if (/^[=+\-@\t\r]/.test(text) && typeof v !== 'number') text = "'" + text;
+    return '"' + text.replaceAll('"', '""') + '"';
+  };
+  const rows = [['mode','token','address','open_utc','close_utc','cost_idr','proceeds_idr','pnl_idr','pnl_pct','reason'],
+    ...state.closed.map(t => [state.mode, t.symbol, t.tokenAddress, new Date(t.openedAt).toISOString(),
+      new Date(t.closedAt).toISOString(), Number(t.cost.toFixed(2)), Number(t.proceeds.toFixed(2)), Number(t.pnl.toFixed(2)), Number(t.pnlPct.toFixed(4)), t.reason])];
+  return '\uFEFF' + rows.map(row => row.map(cell).join(',')).join('\r\n');
+}
+
+const API = 'https://api.dexscreener.com';
+const ADDRESS = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
+const num = v => v !== null && v !== undefined && v !== '' && Number.isFinite(Number(v)) ? Number(v) : null;
+
+function normalizePair(pair, observedAt = Date.now()) {
+  if (pair?.chainId !== 'solana' || !ADDRESS.test(pair?.baseToken?.address || '') ||
+    !ADDRESS.test(pair?.pairAddress || '')) return null;
+  const priceUsd = num(pair.priceUsd);
+  if (!(priceUsd > 0)) return null;
+  return {
+    key: pair.pairAddress, tokenAddress: pair.baseToken.address,
+    symbol: String(pair.baseToken.symbol || 'TOKEN').slice(0, 25),
+    name: String(pair.baseToken.name || '').slice(0, 70),
+    chainId: 'solana', source: 'live', priceUsd,
+    liquidityUsd: num(pair.liquidity?.usd), volumeH1: num(pair.volume?.h1),
+    buysM5: num(pair.txns?.m5?.buys), sellsM5: num(pair.txns?.m5?.sells),
+    changeM5: num(pair.priceChange?.m5), changeH1: num(pair.priceChange?.h1),
+    fdvUsd: num(pair.fdv), createdAt: num(pair.pairCreatedAt), observedAt,
+    dex: String(pair.dexId || '').slice(0, 30)
+  };
+}
+
+async function getJson(url, fetchFn = fetch) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 10_000);
+  try {
+    const res = await fetchFn(url, { signal: controller.signal, cache: 'no-store', credentials: 'omit' });
+    if (!res.ok) throw new Error(`API pasar HTTP ${res.status}`);
+    return await res.json();
+  } finally { clearTimeout(timer); }
+}
+
+// Discovery uses *latest profiles*, not a complete list of new tokens or a
+// direct Pump.fun/Raydium feed. No paid-boost ranking is used as a trading signal.
+async function loadLiveQuotes(positions = [], watchlist = [], fetchFn = fetch) {
+  let profiles = [], warning = '';
+  try {
+    const data = await getJson(`${API}/token-profiles/latest/v1`, fetchFn);
+    if (!Array.isArray(data)) throw new Error('Respons profil tidak valid');
+    profiles = data.filter(x => x.chainId === 'solana' && ADDRESS.test(x.tokenAddress || ''));
+  } catch (err) { warning = 'Penemuan profil gagal; hanya pantau alamat tersimpan.'; }
+  const tokens = [...new Set([...positions.map(p => p.tokenAddress), ...watchlist,
+    ...profiles.map(p => p.tokenAddress)].filter(t => ADDRESS.test(t)))].slice(0, 30);
+  if (!tokens.length) {
+    if (warning) throw new Error('Data pasar tidak tersedia. Coba lagi atau gunakan mode Demo.');
+    return { quotes: [], warning: 'Belum ada profil Solana; tambahkan alamat token di pengaturan.', fetchedAt: Date.now() };
+  }
+  const data = await getJson(`${API}/tokens/v1/solana/${tokens.join(',')}`, fetchFn);
+  if (!Array.isArray(data)) throw new Error('Respons harga tidak valid.');
+  const now = Date.now();
+  const all = data.map(p => normalizePair(p, now)).filter(Boolean);
+  const byToken = new Map();
+  for (const q of all) {
+    if (!tokens.includes(q.tokenAddress)) continue;
+    if (!byToken.has(q.tokenAddress) || (q.liquidityUsd || 0) > (byToken.get(q.tokenAddress).liquidityUsd || 0)) byToken.set(q.tokenAddress, q);
+  }
+  // Held positions retain their exact entry pool. A different pool's price may
+  // not trigger a stop or close a position with a stale quote.
+  const quotes = [...byToken.values()];
+  for (const p of positions) {
+    const exact = all.find(q => q.key === p.key && q.tokenAddress === p.tokenAddress);
+    if (exact && !quotes.some(q => q.key === exact.key)) quotes.push(exact);
+  }
+  return { quotes, warning, fetchedAt: now };
+}
+
+function createDemoFeed(seed = 20261105) {
+  let x = seed >>> 0;
+  const random = () => { x += 0x6D2B79F5; let t = x; t = Math.imul(t ^ t >>> 15, t | 1);
+    t ^= t + Math.imul(t ^ t >>> 7, t | 61); return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+  const names = ['KOMET-D','KODOK-D','NORI-D','BARA-D','MEONG-D','PANDA-D','ORBIT-D','HUJAN-D'];
+  const prices = names.map((_, i) => 0.002 * (i + 1));
+  return {
+    next(now = Date.now()) {
+      return names.map((symbol, i) => {
+        const move = (random() - 0.5) * 0.13;
+        prices[i] = Math.max(0.0000001, prices[i] * (1 + move));
+        return { key: `demo-pool-${i}`, tokenAddress: `demo-token-${i}`, chainId: 'solana',
+          source: 'demo', symbol, name: 'Token fiktif untuk latihan', priceUsd: prices[i],
+          liquidityUsd: 40_000 + random() * 650_000, volumeH1: 5_000 + random() * 320_000,
+          buysM5: Math.floor(10 + random() * 220), sellsM5: Math.floor(10 + random() * 160),
+          changeM5: move * 100, changeH1: (random() - 0.5) * 30,
+          fdvUsd: 5_000_000 + i * 500_000, createdAt: now - (i + 1) * 7_200_000,
+          observedAt: now, dex: 'Demo' };
+      });
+    },
+    // Restoring a demo does not silently rebase a held token to a new price path.
+    resume(positions = []) {
+      for (const p of positions) {
+        const i = names.indexOf(p.symbol);
+        if (i >= 0 && p.markUsd > 0) prices[i] = p.markUsd;
+      }
+    }
+  };
+}
+
+
+const $ = id => document.getElementById(id);
+const idrFormat = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 });
+const smallFormat = new Intl.NumberFormat('id-ID', { notation: 'compact', maximumFractionDigits: 1 });
+const pctFormat = new Intl.NumberFormat('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const usdFormat = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 5 });
+const clock = t => new Date(t).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+const idr = n => idrFormat.format(n);
+const pct = n => `${n > 0 ? '+' : ''}${pctFormat.format(n)}%`;
+const color = n => n > 0.001 ? 'positive' : n < -0.001 ? 'negative' : 'neutral';
+const esc = x => String(x ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const storageKey = mode => `hengki-solana-v1:${mode}`;
+const blockedModes = new Set();
+let toastTimer, storageWarning = false, feedError = '', feedWarning = '';
+let mode = 'demo', watchlist = [], quotes = [], busy = false, requestId = 0, nextPoll = 0, nativeBackground = false;
+try {
+  mode = localStorage.getItem('hengki-solana-mode') === 'live' ? 'live' : 'demo';
+  const list = JSON.parse(localStorage.getItem('hengki-solana-watchlist') || '[]');
+  if (Array.isArray(list)) watchlist = list.filter(x => typeof x === 'string' && ADDRESS.test(x)).slice(0, 10);
+} catch { storageWarning = true; }
+
+function loadSession(currentMode) {
+  try {
+    const raw = localStorage.getItem(storageKey(currentMode));
+    return raw ? restoreSession(JSON.parse(raw), currentMode) : newSession(DEFAULT_SETTINGS, currentMode);
+  } catch {
+    blockedModes.add(currentMode);
+    return newSession(DEFAULT_SETTINGS, currentMode);
+  }
+}
+let state = loadSession(mode);
+let demoFeed = createDemoFeed(Date.now() >>> 0);
+demoFeed.resume(state.positions);
+
+const paths = {
+  grid:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
+  layers:'<path d="m12 3 10 5-10 5L2 8zM2 12l10 5 10-5M2 16l10 5 10-5"/>',
+  list:'<path d="M8 5h13M8 12h13M8 19h13M3 5h.1M3 12h.1M3 19h.1"/>',
+  settings:'<path d="M4 7h16M4 17h16"/><circle cx="8" cy="7" r="3" fill="currentColor"/><circle cx="16" cy="17" r="3" fill="currentColor"/>',
+  wallet:'<path d="M20 7H4V4h14M4 7v13h17V7M21 11h-6v5h6"/><path d="M17 13.5h.1"/>',
+  trend:'<path d="m3 17 6-6 4 4 8-10M15 5h6v6"/>',
+  target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+  play:'<path d="m8 5 11 7-11 7z"/>', pause:'<path d="M8 5v14M16 5v14"/>',
+  refresh:'<path d="M21 4v6h-6M3 20v-6h6M20 10a8 8 0 0 0-14-5M4 14a8 8 0 0 0 14 5"/>',
+  shield:'<path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zM8 12l3 3 5-6"/>',
+  info:'<circle cx="12" cy="12" r="9"/><path d="M12 10v7M12 6h.01"/>',
+  search:'<circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/>',
+  filter:'<path d="M3 4h18l-7 8v6l-4 3v-9z"/>',
+  chart:'<path d="M4 3v17h17M8 15v-4M13 15V7M18 15V5"/>',
+  bolt:'<path d="m13 2-9 12h7l-1 8 10-13h-8z"/>',
+  download:'<path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/>',
+  buy:'<path d="M12 20V4m-6 6 6-6 6 6"/>', sell:'<path d="M12 4v16m-6-6 6 6 6-6"/>'
+};
+const icon = name => `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">${paths[name] || paths.info}</svg>`;
+function icons(root = document) { root.querySelectorAll('[data-icon]').forEach(el => el.innerHTML = icon(el.dataset.icon)); }
+function toast(message) { clearTimeout(toastTimer); $('toast').textContent = message; $('toast').hidden = false; toastTimer = setTimeout(() => $('toast').hidden = true, 4500); }
+
+function persist() {
+  if (blockedModes.has(mode)) return;
+  try {
+    localStorage.setItem(storageKey(mode), JSON.stringify(state));
+    localStorage.setItem('hengki-solana-mode', mode);
+    localStorage.setItem('hengki-solana-watchlist', JSON.stringify(watchlist));
+  } catch {
+    if (!storageWarning) toast('Penyimpanan lokal penuh/tidak tersedia. Ekspor jurnal sebelum menutup aplikasi.');
+    storageWarning = true;
+  }
+}
+
+function renderChart() {
+  const data = state.history.slice(-160);
+  if (!data.length) return;
+  let min = Math.min(...data.map(p => p.equity)), max = Math.max(...data.map(p => p.equity));
+  const pad = Math.max((max - min) * 0.22, state.netFlows * 0.002);
+  min -= pad; max += pad;
+  const coords = data.length === 1 ? [[0, 90], [700, 90]] : data.map((p, i) => [i / (data.length - 1) * 700, 160 - ((p.equity - min) / (max - min)) * 140]);
+  const d = coords.map(([x, y], i) => `${i ? 'L' : 'M'}${x.toFixed(2)} ${y.toFixed(2)}`).join(' ');
+  $('chart-line').setAttribute('d', d);
+  $('chart-area').setAttribute('d', `${d} L700 180 L0 180Z`);
+  const last = coords[coords.length - 1];
+  $('chart-tip').setAttribute('cx', last[0]); $('chart-tip').setAttribute('cy', last[1]);
+  $('chart-start').textContent = clock(data[0].t);
+  $('chart-end').textContent = clock(data[data.length - 1].t);
+  $('equity-chart').setAttribute('aria-label', `Ekuitas virtual ${idr(data[0].equity)} menjadi ${idr(data[data.length - 1].equity)}. Rentang vertikal mengikuti data.`);
+}
+
+function render() {
+  const now = Date.now(), p = portfolio(state, now), s = state.settings;
+  $('equity').textContent = idr(p.equity);
+  $('pnl-percent').textContent = pct(p.pnlPct); $('pnl-percent').className = `performance ${color(p.pnl)}`;
+  $('pnl').textContent = `${p.pnl > 0 ? '+' : ''}${idr(p.pnl)}`; $('pnl').className = color(p.pnl);
+  $('net-flow').textContent = idr(state.netFlows);
+  $('cash').textContent = idr(state.cash);
+  $('realized').textContent = idr(p.realized); $('realized').className = color(p.realized);
+  $('trade-count').textContent = `${p.trades} transaksi selesai`;
+  $('winrate').textContent = p.winRate === null ? '—' : `${pctFormat.format(p.winRate)}%`;
+  $('win-detail').textContent = p.trades ? `${p.wins} untung dari ${p.trades} transaksi` : 'Belum ada transaksi selesai';
+  const fresh = state.lastDataAt && now - state.lastDataAt <= STALE_MS;
+  $('feed-time').textContent = state.lastDataAt ? `${fresh ? 'Data' : 'Data lama'} ${clock(state.lastDataAt)}` : 'Belum ada data';
+  $('run-status').textContent = state.riskHalted ? 'Batas rugi tercapai' : state.running ? 'Berjalan · paper' : 'Beli dijeda';
+  $('status-dot').className = `status-dot ${state.running ? '' : 'paused'}`;
+  $('toggle-label').textContent = state.running ? 'Jeda beli baru' : 'Mulai bot';
+  $('toggle-run').classList.toggle('paused-action', state.running);
+  $('toggle-run').firstElementChild.innerHTML = icon(state.running ? 'pause' : 'play');
+  $('toggle-run').disabled = state.riskHalted || busy || blockedModes.has(mode);
+  $('module-status').textContent = state.running ? 'RUNNING' : 'READY';
+  $('source-label').textContent = mode === 'demo' ? 'DEMO FEED' : fresh ? 'DEXSCREENER' : 'MENUNGGU DATA';
+  $('scan-interval').textContent = mode === 'demo' ? 'Demo · pembaruan 4 detik' : 'Harga pasar · pembaruan 15 detik';
+  $('quote-count').textContent = `${quotes.length} pool terpantau`;
+  $('notice').classList.toggle('live', mode === 'live');
+  $('notice-text').textContent = mode === 'demo'
+    ? 'MODE DEMO · Harga token fiktif untuk latihan. Seluruh saldo dan transaksi bersifat virtual.'
+    : `PAPER + HARGA PASAR · Harga DEX Screener, transaksi virtual. Kurs referensi manual USD/IDR ${smallFormat.format(s.usdIdr)}; dapat diubah pada pengaturan.`;
+  $('mode-demo').classList.toggle('selected', mode === 'demo');
+  $('mode-live').classList.toggle('selected', mode === 'live');
+  $('mode-demo').setAttribute('aria-pressed', mode === 'demo');
+  $('mode-live').setAttribute('aria-pressed', mode === 'live');
+  const warning = blockedModes.has(mode) ? 'Data tersimpan gagal direkonsiliasi. Sesi asli belum ditimpa. Pilih Sesi baru untuk mengatur ulang mode ini.'
+    : feedError || (p.stalePositions ? `${p.stalePositions} posisi memakai harga lama. Ekuitas adalah nilai terakhir; stop menunggu data segar.` : '') || feedWarning;
+  $('error-banner').hidden = !warning; $('error-banner').textContent = warning;
+  $('risk-allocation').textContent = `${s.positionPct}%`;
+  $('risk-stops').textContent = `−${s.stopPct}% / +${s.takeProfitPct}%`;
+  $('risk-session').textContent = `−${s.maxLossPct}%`;
+  $('risk-slots').textContent = `${state.positions.length} / ${s.maxPositions}`;
+  $('allocation-bar').style.width = `${Math.min(100, p.invested / Math.max(1, p.equity) * 100)}%`;
+  $('risk-caption').textContent = `Estimasi per sisi: biaya ${s.feePct}% + slippage ${s.slippagePct}%. Stop dievaluasi pada harga saat pembaruan; hasil dapat melewati batas.`;
+  ['side-position-count', 'position-badge'].forEach(id => $(id).textContent = state.positions.length);
+  $('refresh').disabled = busy;
+  renderChart(); renderAgents(); renderCandidates(now); renderPositions(now); renderJournal();
+}
+
+function renderAgents() {
+  const c = state.counters, r = state.lastReport;
+  const rows = [
+    ['Scout','search', mode === 'demo' ? 'Sumber harga fiktif' : 'Profil terbaru + watchlist', `${quotes.length} pool`],
+    ['Filter','filter','Likuiditas, volume, umur & rasio beli',`${r?.passed || 0}/${r?.scanned || 0} lolos`],
+    ['Analyst','chart','Skor momentum; bukan peluang profit',r?.candidates[0] ? `Top ${r.candidates[0].score}/100` : 'Menunggu'],
+    ['Executor','bolt','Catat beli & jual virtual',`${c.entries} beli`],
+    ['Risk','shield',`Stop −${state.settings.stopPct}% · trailing ${state.settings.trailPct}%`,state.riskHalted ? 'HALTED' : `${state.positions.length} posisi`],
+    ['Journal','list','Riwayat keputusan & hasil sesi',`${state.closed.length} selesai`]
+  ];
+  $('agent-list').innerHTML = rows.map(([name,i,desc,value]) => `<div class="agent"><span class="agent-symbol">${icon(i)}</span><div class="agent-text"><strong>${name}</strong><small>${esc(desc)}</small></div><span class="agent-value">${esc(value)}</span></div>`).join('');
+}
+
+function renderCandidates(now) {
+  const list = state.lastReport?.candidates || [];
+  const byKey = new Map(quotes.map(q => [q.key, q]));
+  const rows = list.slice(0, 8).map(c => {
+    const q = byKey.get(c.key); if (!q) return '';
+    const isFresh = validQuote(q, mode, now);
+    const title = c.passed ? 'Seluruh syarat strategi terpenuhi; keamanan on-chain belum diverifikasi.' : c.reasons.join(' · ');
+    return `<tr><td><button class="text-button token-cell" data-token="${esc(q.key)}" aria-label="Detail token ${esc(q.symbol)}"><span class="token-avatar">${esc(q.symbol.slice(0,1))}</span><span class="token-info"><b>${esc(q.symbol)}</b><small>${esc(q.dex)} · ${mode === 'demo' ? 'fiktif' : q.tokenAddress.slice(0,4)+'…'+q.tokenAddress.slice(-4)}</small></span></button></td><td>${esc(usdFormat.format(q.priceUsd))}</td><td class="${Number.isFinite(q.changeM5) ? color(q.changeM5) : 'neutral'}">${Number.isFinite(q.changeM5) ? esc(pct(q.changeM5)) : '—'}</td><td>${q.liquidityUsd === null ? '—' : '
+</html>
++esc(smallFormat.format(q.liquidityUsd))}</td><td><span class="score">${c.score}</span></td><td><span class="filter-pill ${!c.passed || !isFresh ? 'fail' : ''}" title="${esc(title)}">${!isFresh ? 'Data lama' : c.passed ? 'Lolos aturan' : 'Lewati'}</span></td></tr>`;
+  }).join('');
+  $('candidates-body').innerHTML = rows || '<tr><td colspan="6"><div class="empty-state"><span class="empty-title">Menunggu data token</span>Pindai data atau tambahkan alamat Solana di pengaturan.</div></td></tr>';
+  $('market-note').textContent = mode === 'demo' ? 'Token berakhiran -D adalah fiktif. Skor tinggi tetap dapat menghasilkan kerugian.'
+    : 'Kandidat dari profil terbaru DEX Screener + watchlist; bukan seluruh token baru Solana. Ketuk token untuk alasan filter.';
+}
+
+function renderPositions(now) {
+  $('positions-list').innerHTML = state.positions.length ? state.positions.map(p => {
+    const value = estimatedValue(p, state.settings), gain = value - p.cost;
+    const q = quotes.find(q => q.key === p.key && q.tokenAddress === p.tokenAddress);
+    const stale = !q || !validQuote(q, mode, now);
+    return `<div class="position-row"><div class="token-cell"><span class="token-avatar">${esc(p.symbol.slice(0,1))}</span><span class="token-info"><b>${esc(p.symbol)}</b><small>${stale ? 'Harga lama · tunggu pembaruan' : 'Harga terpantau'} · ${esc(clock(p.openedAt))}</small></span></div><div class="position-value position-cost">${esc(idr(p.cost))}<small>Modal termasuk biaya beli</small></div><div class="position-value ${color(gain)}">${esc(idr(gain))}<small class="${color(gain)}">${esc(pct(gain/p.cost*100))} · ${esc(idr(value))}</small></div><button class="outline-button" data-close="${esc(p.key)}" ${stale ? 'disabled' : ''}>Tutup</button></div>`;
+  }).join('') : '<div class="empty-state"><span class="empty-title">Belum ada posisi terbuka</span>Mulai bot untuk membeli secara virtual ketika syarat strategi terpenuhi.</div>';
+}
+
+function renderJournal() {
+  const rows = state.journal.slice(0, 20);
+  $('journal-list').innerHTML = rows.length ? rows.map(e => `<div class="journal-row"><span class="journal-time">${esc(clock(e.t))}</span><span class="journal-type ${esc(e.type)}">${icon(e.type === 'buy' ? 'buy' : e.type === 'sell' ? 'sell' : e.type === 'risk' ? 'shield' : 'info')}</span><span class="journal-message">${esc(e.message)}</span><span class="journal-amount ${Number.isFinite(e.pnl) ? color(e.pnl) : ''}">${Number.isFinite(e.pnl) ? esc(idr(e.pnl)) : Number.isFinite(e.amount) ? esc(idr(e.amount)) : ''}</span></div>`).join('') : '<div class="empty-state"><span class="empty-title">Sesi siap dimulai</span>Jurnal akan mencatat keputusan saat Anda menjalankan bot.</div>';
+}
+
+async function refreshMarket() {
+  if (busy || document.hidden || nativeBackground) return;
+  const version = ++requestId, session = state, currentMode = mode;
+  busy = true; render();
+  try {
+    const result = currentMode === 'demo' ? { quotes: demoFeed.next(), warning: '' } : await loadLiveQuotes(session.positions, watchlist);
+    if (version !== requestId || session !== state) return;
+    quotes = result.quotes;
+    feedWarning = result.warning || ''; feedError = '';
+    if (!quotes.length && state.running) {
+      state.running = false;
+      logEvent(state, 'risk', 'Tidak ada harga valid. Beli dijeda.');
+    }
+    processTick(state, quotes);
+    persist();
+  } catch (err) {
+    if (version !== requestId || session !== state) return;
+    state.running = false;
+    feedError = 'Data pasar gagal diperbarui. Beli dijeda; periksa internet lalu tekan Mulai bot. Harga terakhir tetap ditampilkan.';
+    logEvent(state, 'risk', 'Pembaruan pasar gagal; beli dijeda.');
+    persist();
+  } finally {
+    if (version === requestId) { busy = false; nextPoll = Date.now() + (mode === 'demo' ? 4000 : 15000); render(); }
+  }
+}
+
+function showModal(title, content) {
+  $('modal-title').textContent = title; $('modal-body').innerHTML = content;
+  icons($('modal-body')); if (!$('modal').open) $('modal').showModal();
+}
+const formError = message => { const el = $('form-error'); if (el) el.textContent = message; };
+
+function resetCurrent(settings = state.settings) {
+  state.running = false; requestId++; busy = false;
+  state = newSession(settings, mode);
+  blockedModes.delete(mode);
+  quotes = []; feedError = ''; feedWarning = '';
+  demoFeed = createDemoFeed(Date.now() >>> 0);
+  persist(); $('modal').close(); render(); refreshMarket();
+}
+
+function showSettings() {
+  const fields = [
+    ['capital','Modal awal virtual (Rp)',1000], ['usdIdr','USD/IDR referensi manual',1],
+    ['positionPct','Alokasi per posisi (%)',1], ['maxPositions','Maksimal posisi bersamaan',1],
+    ['stopPct','Stop loss (%)',0.5], ['takeProfitPct','Take profit (%)',0.5],
+    ['trailPct','Jarak trailing (%)',0.5], ['trailActivationPct','Aktivasi trailing pada profit (%)',0.5],
+    ['maxLossPct','Batas rugi sesi (%)',0.5], ['minScore','Skor minimal (1–100)',1],
+    ['feePct','Biaya simulasi per sisi (%)',0.1], ['slippagePct','Slippage per sisi (%)',0.1],
+    ['minLiquidity','Likuiditas minimal (USD)',1000], ['minVolumeH1','Volume 1 jam minimal (USD)',1000],
+    ['minBuysM5','Transaksi beli 5m minimal',1], ['minAgeMinutes','Umur pool minimal (menit)',1],
+    ['cooldownMinutes','Jeda beli ulang token (menit)',1]
+  ];
+  showModal('Pengaturan sesi', `<p class="modal-intro">Menyimpan pengaturan membuat sesi baru pada mode <b>${mode === 'demo' ? 'Demo' : 'Harga pasar'}</b> dan menghapus jurnal mode ini. Ekspor CSV lebih dahulu bila diperlukan. Kurs adalah asumsi manual, bukan kurs terkini.</p><form id="settings-form"><div class="form-grid">${fields.map(([key,label,step]) => `<label>${esc(label)}<input name="${key}" type="number" required step="any" value="${state.settings[key]}" inputmode="decimal"></label>`).join('')}</div><label class="field">Watchlist alamat mint Solana (opsional, maksimal 10)<textarea name="watchlist" rows="3" placeholder="Satu alamat per baris">${esc(watchlist.join('\n'))}</textarea><small>Gunakan alamat mint, bukan nama token. Aktif hanya pada mode Harga pasar.</small></label><div id="form-error" class="form-error" role="alert"></div><div class="form-actions"><button type="button" data-dismiss>Batal</button><button class="confirm" type="submit">Simpan sesi baru</button></div></form>`);
+  $('settings-form').addEventListener('submit', e => {
+    e.preventDefault();
+    try {
+      const data = new FormData(e.target), input = { ...state.settings };
+      for (const [key] of fields) input[key] = Number(data.get(key));
+      const settings = validateSettings(input);
+      const list = String(data.get('watchlist')).split(/[\s,;]+/).filter(Boolean);
+      if (list.length > 10 || list.some(t => !ADDRESS.test(t))) throw new Error('Watchlist harus berisi maksimal 10 alamat mint Solana yang valid.');
+      watchlist = [...new Set(list)]; resetCurrent(settings); toast('Sesi baru disimpan. Tekan Mulai bot untuk menjalankan.');
+    } catch (err) { formError(err.message); }
+  });
+}
+
+function exportCsv() {
+  const csv = csvForTrades(state), filename = `HENGKI-${mode}-${new Date().toISOString().slice(0,10)}.csv`;
+  if (globalThis.AndroidExport?.saveCsv) { globalThis.AndroidExport.saveCsv(csv); toast('Pilih lokasi untuk menyimpan jurnal.'); return; }
+  const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8;' }));
+  const a = document.createElement('a'); a.href = url; a.download = filename; document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 10_000);
+  toast(`${state.closed.length} transaksi selesai diekspor.`);
+}
+
+const actions = {
+  settings: showSettings,
+  export: exportCsv,
+  reset() {
+    showModal('Mulai sesi baru', `<p class="modal-intro">Saldo akan kembali ke <b>${esc(idr(state.settings.capital))}</b>. Posisi dan jurnal pada mode ${mode === 'demo' ? 'Demo' : 'Harga pasar'} akan dihapus. Mode lain tetap tersimpan.</p><div class="form-actions"><button id="export-before-reset">Ekspor CSV</button><button data-dismiss>Batal</button><button id="confirm-reset" class="confirm">Mulai sesi baru</button></div>`);
+    $('export-before-reset').onclick = exportCsv;
+    $('confirm-reset').onclick = () => { resetCurrent(); toast('Sesi diatur ulang.'); };
+  },
+  cash() {
+    if (state.positions.length) { toast('Tutup semua posisi sebelum mengubah modal virtual.'); return; }
+    showModal('Ubah modal virtual', `<p class="modal-intro">Saldo bebas ${esc(idr(state.cash))}. Masukkan angka positif untuk menambah atau negatif untuk mengurangi modal. Perubahan modal tidak dihitung sebagai profit. Tidak ada transfer uang nyata.</p><form id="cash-form"><label class="field">Perubahan modal (Rp)<input type="number" name="amount" step="1000" required placeholder="Contoh: 100000 atau -50000" inputmode="text"></label><div class="form-error" id="form-error" role="alert"></div><div class="form-actions"><button type="button" data-dismiss>Batal</button><button type="submit" class="confirm">Simpan perubahan</button></div></form>`);
+    $('cash-form').onsubmit = e => {
+      e.preventDefault();
+      try { moveVirtualCash(state, Number(new FormData(e.target).get('amount'))); persist(); $('modal').close(); render(); toast('Modal virtual diperbarui.'); }
+      catch (err) { formError(err.message); }
+    };
+  },
+  about() {
+    showModal('Strategi & sumber data', `<p class="modal-intro">HENGKI Solana Desk v1.0.0 · Enam modul perangkat lunak berbasis aturan. Semua keputusan dan hasil adalah simulasi.</p><ol class="about-list"><li><b>Scout:</b> mode Demo membuat token fiktif. Mode Harga pasar membaca profil terbaru DEX Screener serta watchlist, maksimal 30 alamat per siklus. Ini bukan pemindai seluruh token baru di Pump.fun/Raydium.</li><li><b>Filter:</b> memeriksa likuiditas, volume 1h, transaksi 5m, rasio beli ≥55%, momentum 5m 0,5–20%, umur pool dan FDV/likuiditas ≤50×. Data yang hilang tidak dianggap lolos.</li><li><b>Analyst:</b> skor 0–100 merangkum momentum, likuiditas dan aktivitas. Skor bukan probabilitas profit. Verifikasi mint/freeze authority, holder dan penguncian LP belum diterapkan.</li><li><b>Executor:</b> mencatat beli/jual virtual dalam rupiah, menggunakan kurs manual tetap serta estimasi biaya dan slippage per sisi. Tidak menautkan dompet atau menandatangani transaksi.</li><li><b>Risk:</b> memantau stop loss, take profit, trailing stop, batas rugi sesi dan jeda beli ulang. Stop hanya dievaluasi saat ada harga segar; gap harga dapat membuat kerugian melewati batas. Harga DEX merupakan snapshot agregator, bukan kuotasi eksekusi.</li><li><b>Journal:</b> menyimpan sesi Demo dan Harga pasar secara terpisah pada perangkat. Buka ulang aplikasi selalu dalam keadaan beli dijeda. Aplikasi tidak memantau posisi ketika ditutup atau dipindahkan ke latar belakang.</li></ol><p class="modal-note">Referensi: <a href="https://docs.dexscreener.com/api/reference" target="_blank" rel="noopener noreferrer">DEX Screener API</a> · <a href="https://docs.github.com/en/actions/concepts/workflows-and-actions/workflow-artifacts" target="_blank" rel="noopener noreferrer">GitHub Actions</a></p>`);
+  }
+};
+
+async function switchMode(next) {
+  if (next === mode || !['demo', 'live'].includes(next)) return;
+  const apply = () => {
+    state.running = false; persist(); requestId++; busy = false;
+    mode = next; state = loadSession(mode); quotes = []; feedError = ''; feedWarning = '';
+    demoFeed = createDemoFeed(Date.now() >>> 0); demoFeed.resume(state.positions);
+    persist(); $('modal').close(); render(); refreshMarket();
+  };
+  if (state.positions.length) {
+    showModal('Pindah sumber data', '<p class="modal-intro">Posisi sesi ini disimpan dan berhenti dipantau sampai Anda kembali ke mode ini. Saldo kedua mode terpisah.</p><div class="form-actions"><button data-dismiss>Batal</button><button id="confirm-mode" class="confirm">Pindah mode</button></div>');
+    $('confirm-mode').onclick = apply;
+  } else apply();
+}
+
+document.addEventListener('click', e => {
+  const a = e.target.closest('[data-action]'); if (a) actions[a.dataset.action]?.();
+  const m = e.target.closest('[data-mode]'); if (m) switchMode(m.dataset.mode);
+  if (e.target.closest('[data-dismiss]')) $('modal').close();
+  const close = e.target.closest('[data-close]');
+  if (close) {
+    const q = quotes.find(q => q.key === close.dataset.close);
+    const result = closePosition(state, close.dataset.close, q, 'Manual');
+    if (!result) toast('Harga tidak segar. Perbarui data lebih dahulu.');
+    else { persist(); render(); toast('Posisi virtual ditutup.'); }
+  }
+  const token = e.target.closest('[data-token]');
+  if (token) {
+    const q = quotes.find(q => q.key === token.dataset.token);
+    const c = state.lastReport?.candidates.find(c => c.key === token.dataset.token);
+    if (!q || !c) return;
+    showModal(`Detail ${q.symbol}`, `<p class="modal-intro">${mode === 'demo' ? 'Token fiktif · harga demo' : 'Solana · DEX Screener'} · Skor strategi ${c.score}/100.</p><div class="full-address">${esc(q.tokenAddress)}</div><ul class="about-list">${c.reasons.length ? c.reasons.map(r => `<li>${esc(r)}</li>`).join('') : '<li>Semua syarat strategi terpenuhi.</li>'}<li>Keamanan on-chain belum diverifikasi.</li><li>Data diterima perangkat: ${esc(clock(q.observedAt))}.</li></ul>${mode === 'live' && ADDRESS.test(q.key) ? `<a class="outline-button" target="_blank" rel="noopener noreferrer" href="https://dexscreener.com/solana/${esc(q.key)}">Lihat pool di DEX Screener ↗</a>` : ''}`);
+  }
+});
+$('modal-close').onclick = () => $('modal').close();
+$('refresh').onclick = refreshMarket;
+$('toggle-run').onclick = async () => {
+  if (busy || state.riskHalted || blockedModes.has(mode)) return;
+  if (state.running) { state.running = false; logEvent(state, 'info', 'Beli baru dijeda; posisi tetap dipantau saat aplikasi terbuka.'); persist(); render(); return; }
+  state.running = true; logEvent(state, 'info', 'Bot paper dimulai. Pembelian mengikuti syarat strategi.');
+  persist(); await refreshMarket();
+};
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    // Invalidate in-flight responses too; a late response must never open a trade.
+    requestId++; busy = false;
+    if (state.running) { state.running = false; logEvent(state, 'risk', 'Aplikasi masuk latar belakang. Beli dijeda; pemantauan berhenti sampai dibuka lagi.'); persist(); }
+  } else { render(); refreshMarket(); }
+});
+window.addEventListener('pagehide', () => { state.running = false; persist(); });
+globalThis.HengkiDesk = Object.freeze({
+  pauseForBackground() {
+    nativeBackground = true; requestId++; busy = false;
+    if (state.running) logEvent(state, 'risk', 'Aplikasi masuk latar belakang. Beli dan pemantauan dijeda.');
+    state.running = false; persist();
+  },
+  resumeForeground() { nativeBackground = false; state.running = false; render(); refreshMarket(); }
+});
+
+icons(); render();
+if (storageWarning) toast('Penyimpanan perangkat tidak tersedia; sesi mungkin tidak tersimpan.');
+refreshMarket();
+setInterval(() => { if (document.hidden || nativeBackground) return; if (!busy && Date.now() >= nextPoll) refreshMarket(); else render(); }, 1000);
+
+</script>
+</body>
+</html>

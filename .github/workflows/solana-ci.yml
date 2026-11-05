@@ -1,0 +1,36 @@
+name: Solana - Check and test
+on:
+  push:
+    paths: ['solana-desk/**', '.github/workflows/solana-ci.yml']
+  pull_request:
+    paths: ['solana-desk/**', '.github/workflows/solana-ci.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: solana-desk
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm run check
+      - run: npm test
+      - name: Install browser test tools
+        run: npm install --no-save --package-lock=false playwright@1.57.0
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Test desktop and mobile application
+        run: node scripts/ui-check.mjs
+      - name: Retain browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Solana-browser-checks
+          path: solana-desk/test-results/
+          retention-days: 7
+          if-no-files-found: ignore

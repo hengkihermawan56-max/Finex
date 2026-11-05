@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1013">
+  <meta name="description" content="HENGKI Solana Desk: latihan trading Solana dengan enam modul transparan dan pencatatan risiko.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.dexscreener.com; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self'">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+  <title>HENGKI · Solana Desk</title>
+</head>
+<body>
+  <a class="skip-link" href="#overview">Lompat ke dasbor</a>
+  <aside class="sidebar">
+    <a class="brand" href="#overview" aria-label="Hengki Solana Desk"><img src="./icon.svg" alt="" width="38" height="38"><span>HENGKI<span class="brand-small">SOLANA DESK</span></span></a>
+    <div class="side-label">WORKSPACE</div>
+    <nav class="side-nav" aria-label="Navigasi utama">
+      <a href="#overview" class="active"><span data-icon="grid"></span> Ringkasan</a>
+      <a href="#positions"><span data-icon="layers"></span> Posisi aktif <b id="side-position-count">0</b></a>
+      <a href="#journal"><span data-icon="list"></span> Jurnal transaksi</a>
+      <button data-action="settings"><span data-icon="settings"></span> Pengaturan</button>
+    </nav>
+    <div class="side-bottom"><span class="tiny-dot"></span> PAPER TRADING ONLY<p>Latihan dengan modal virtual.<br>Strategi berbasis aturan.</p><span class="version">v1.0.0 / GitHub edition</span></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><span class="mobile-brand"><img src="./icon.svg" alt="" width="28" height="28"> HENGKI<span class="muted">/ DESK</span></span><span class="breadcrumb">Workspace <span>/</span> Solana Desk</span><div class="top-right"><span class="pill quiet">SOLANA</span><span class="avatar" aria-label="Hengki">H</span></div></header>
+    <main id="overview">
+      <div class="page-heading"><div><p class="eyebrow">YOUR TRADING WORKSPACE</p><h1>Solana Desk<span class="heading-dot">.</span></h1><p class="subtitle">Pantau peluang. Uji strategi. Catat setiap keputusan.</p></div><button class="icon-button settings-top" data-action="settings" aria-label="Buka pengaturan"><span data-icon="settings"></span></button></div>
+      <div class="session-bar"><div class="segmented" role="group" aria-label="Sumber data"><button id="mode-demo" data-mode="demo" class="selected">Demo</button><button id="mode-live" data-mode="live">Harga pasar</button></div><div class="run-status"><span id="status-dot" class="status-dot paused"></span><span id="run-status">Siap · dijeda</span><span class="divider">/</span><span id="feed-time">Belum ada data</span></div></div>
+      <div id="notice" class="notice" role="status"><span data-icon="info"></span><span id="notice-text">MODE DEMO · Harga token fiktif untuk latihan. Seluruh saldo dan transaksi bersifat virtual.</span></div>
+      <div id="error-banner" class="error-banner" role="alert" hidden></div>
+      <section class="dashboard-grid">
+        <div class="left-column">
+          <section class="card equity-card" aria-labelledby="equity-heading">
+            <div class="card-top"><h2 id="equity-heading">Total ekuitas virtual</h2><span class="pill green" id="source-label">DEMO FEED</span></div>
+            <div class="balance-line"><span id="equity" class="balance">Rp1.000.000</span><span id="pnl-percent" class="performance neutral">0,00%</span></div>
+            <div class="balance-meta"><span id="pnl" class="neutral">Rp0</span><span>dari modal bersih <span id="net-flow">Rp1.000.000</span></span></div>
+            <div class="chart-wrap"><svg id="equity-chart" viewBox="0 0 700 180" role="img" aria-label="Grafik ekuitas virtual berdasarkan pemindaian sesi"><defs><linearGradient id="chart-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#2cdb9f" stop-opacity="0.19"/><stop offset="100%" stop-color="#2cdb9f" stop-opacity="0"/></linearGradient></defs><path id="chart-area" fill="url(#chart-fill)"/><path id="chart-grid" d="M0 35H700 M0 90H700 M0 145H700" fill="none" stroke="#20302e" stroke-dasharray="3 6"/><path id="chart-line" fill="none" stroke="#39dca5" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle id="chart-tip" r="4" fill="#53efb9"/></svg><div class="chart-axis"><span id="chart-start">Awal sesi</span><span>EKUITAS SETELAH ESTIMASI BIAYA</span><span id="chart-end">Sekarang</span></div></div>
+            <div class="equity-footer"><span><span class="tiny-dot"></span> <span id="scan-interval">Demo · pembaruan 4 detik</span></span><span id="quote-count">0 pool terpantau</span></div>
+          </section>
+          <div class="stats-grid">
+            <div class="card stat"><span class="stat-label">Saldo bebas<span data-icon="wallet"></span></span><strong id="cash">Rp1.000.000</strong><small>Modal virtual tersedia</small></div>
+            <div class="card stat"><span class="stat-label">Profit terealisasi<span data-icon="trend"></span></span><strong id="realized">Rp0</strong><small id="trade-count">0 transaksi selesai</small></div>
+            <div class="card stat"><span class="stat-label">Win rate<span data-icon="target"></span></span><strong id="winrate">—</strong><small id="win-detail">Belum ada transaksi selesai</small></div>
+          </div>
+          <section class="card candidates-card" aria-labelledby="market-heading"><div class="section-head"><div><h2 id="market-heading">Radar token</h2><p>Skor strategi 0–100, berdasarkan data yang tersedia.</p></div><button id="refresh" class="icon-button" aria-label="Perbarui data pasar"><span data-icon="refresh"></span></button></div><div class="table-scroll"><table><thead><tr><th>TOKEN / POOL</th><th>HARGA USD</th><th>5 MENIT</th><th>LIKUIDITAS</th><th>SKOR</th><th>HASIL FILTER</th></tr></thead><tbody id="candidates-body"></tbody></table></div><div class="table-note" id="market-note">Token berakhiran -D adalah token fiktif.</div></section>
+        </div>
+        <div class="right-column">
+          <section class="card control-card"><div class="card-top"><h2>Kontrol sesi</h2><span class="pill quiet">VIRTUAL</span></div><button id="toggle-run" class="primary-button"><span data-icon="play"></span><span id="toggle-label">Mulai bot</span></button><div class="secondary-controls"><button data-action="cash">± Modal virtual</button><button data-action="reset"><span data-icon="refresh"></span>Sesi baru</button></div><div class="control-note">Jeda menghentikan beli baru. Posisi tetap dipantau saat aplikasi terbuka.</div></section>
+          <section class="card agents-card" aria-labelledby="agents-heading"><div class="section-head"><div><h2 id="agents-heading">Desk · 6 modul</h2><p>Alur kerja berbasis aturan</p></div><span class="live-badge"><span class="tiny-dot"></span><span id="module-status">READY</span></span></div><div id="agent-list" class="agent-list"></div><div class="agent-footnote"><span data-icon="info"></span>Setiap angka berasal dari pemrosesan sesi ini.</div></section>
+          <section class="card risk-card"><div class="card-top"><h2>Pagar risiko</h2><span data-icon="shield"></span></div><div class="risk-row"><span>Alokasi per posisi</span><b id="risk-allocation">8%</b></div><div class="risk-row"><span>Stop loss / take profit</span><b id="risk-stops">−6% / +12%</b></div><div class="risk-row"><span>Batas rugi sesi</span><b id="risk-session">−5%</b></div><div class="risk-row"><span>Posisi bersamaan</span><b id="risk-slots">0 / 3</b></div><div class="allocation-track"><span id="allocation-bar"></span></div><p class="risk-caption" id="risk-caption">Harga terakhir dipakai untuk estimasi; harga eksekusi nyata bisa berbeda.</p></section>
+        </div>
+      </section>
+      <section class="card positions-card" id="positions"><div class="section-head"><div><h2>Posisi aktif <span id="position-badge" class="count-badge">0</span></h2><p>Nilai dan profit/rugi sudah memperhitungkan estimasi biaya keluar.</p></div><span class="pill quiet">PAPER</span></div><div id="positions-list"></div></section>
+      <section class="card journal-card" id="journal"><div class="section-head"><div><h2>Jurnal transaksi</h2><p>Keputusan bot beserta alasan beli, jual, dan penghentian risiko.</p></div><button data-action="export" class="outline-button"><span data-icon="download"></span>Ekspor CSV</button></div><div id="journal-list"></div></section>
+      <footer class="page-footer"><span>HENGKI SOLANA DESK <span class="muted">/ 1.0.0</span></span><p>Seluruh transaksi merupakan simulasi. Pemeriksaan mint authority, freeze authority, pemilik token dan LP belum tersedia. Aplikasi perlu tetap terbuka untuk memantau posisi.</p><button data-action="about" class="text-button">Tentang strategi & sumber data <span>↗</span></button></footer>
+    </main>
+  </div>
+  <nav class="mobile-nav" aria-label="Navigasi seluler"><a href="#overview"><span data-icon="grid"></span>Ringkasan</a><a href="#positions"><span data-icon="layers"></span>Posisi</a><a href="#journal"><span data-icon="list"></span>Jurnal</a><button data-action="settings"><span data-icon="settings"></span>Atur</button></nav>
+  <dialog id="modal"><div class="modal-heading"><h2 id="modal-title"></h2><button id="modal-close" class="icon-button" aria-label="Tutup dialog">×</button></div><div id="modal-body"></div></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>

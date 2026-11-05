@@ -1,0 +1,46 @@
+name: Solana - Build Android APK
+on:
+  push:
+    paths: ['solana-desk/**', '.github/workflows/solana-android.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate paper engine
+        working-directory: solana-desk
+        run: |
+          npm run check
+          npm test
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - name: Install Android SDK
+        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - name: Build APK
+        working-directory: solana-desk/android
+        run: gradle --no-daemon :app:assembleDebug :app:lintDebug
+      - name: Name artifact and calculate checksum
+        run: |
+          mkdir -p apk-output
+          cp solana-desk/android/app/build/outputs/apk/debug/app-debug.apk apk-output/HENGKI-Solana-Desk-debug.apk
+          cd apk-output
+          sha256sum HENGKI-Solana-Desk-debug.apk > SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: HENGKI-Solana-Desk-Android
+          path: apk-output/
+          if-no-files-found: error
+          retention-days: 30

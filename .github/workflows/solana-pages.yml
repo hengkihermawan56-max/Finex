@@ -1,0 +1,35 @@
+name: Solana - Publish web app
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: solana-pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test application
+        working-directory: solana-desk
+        run: |
+          npm run check
+          npm test
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: solana-desk/web
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
